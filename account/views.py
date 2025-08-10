@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from homepage(re)
+
 # Create your views here.
 from django.shortcuts import render
 
