@@ -24,3 +24,9 @@ class ItemView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def menu_list(request):
+        menu_items =[
+            {"name":"Chicken pizza","price":90.00,"description":"Classic cheese and tomato pizza"  }
+            {"name":"Burger,price":60,"description":1'Grilled veggie patty withlettuce and tomato"}
+        ]
+        return render (request,"menu_list.html",{"menu_items": menu_items})
