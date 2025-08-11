@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content ="width=device-width,intial-scale=1.0">
+        <title> Contact US</title>
+        <style>
+            body {
+            font-family:Arial,sans-serif;
+            background-color:#fafafa;
+            margin:0;
+            padding:0;
+            }
+            header {
+            background-color: #ff6347;
+            color:white;
+            text-align:center;
+            padding: 20px;
+            }
+            main {
+            max-width: 800px;
+            margin : 30px auto;
+            background-color:white;
+            padding:20px;
+            border-radius:8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            h2 {
+            color:#ff6347;
+            }
+            p {
+            line-height: 1.6;
+            }
+            </style>
+    </head>
+    <body>
+
+<header>
+    <h1> Contact US</h1>
+</header>
+   <main>
+    <h2> Our Contact Information</h2>
+    <p><strong>Address:</strong>{{contact_info.address}}</p>
+    <p><strong>phone:</strong>{{contact_info.phone}}</p>
+    <p><strong>Email:</strong><a href="mailto:{{contact_info.email}}">{{contact_info}}</a></p>
+   </main>
+    </body>
+</html>
