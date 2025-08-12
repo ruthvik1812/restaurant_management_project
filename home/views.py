@@ -5,5 +5,5 @@ from django.conf import settings
 
 def home(request):
     restaurant = RestaurantInfo.objects.first()
-    return render(request,'home.html',{'phone_number' :restaurant.phone if restaurant else None})
+    return render(request,'home.html',{'phone_number' :phone_number})
    
