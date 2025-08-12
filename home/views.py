@@ -4,5 +4,6 @@ from django.conf import settings
 
 
 def home(request):
-    return HttpResponse("home.html")
+    restaurant = RestaurantInfo.objects.first()
+    return render(request,'home.html',{'phone_number' :restaurant.phone if restaurant else None})
    
