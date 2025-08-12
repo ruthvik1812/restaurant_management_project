@@ -4,6 +4,7 @@ from django.conf import settings
 
 
 def home(request):
-    restaurant_name = getattr(settings,'RESTAURANT_NAME','My Restaurant')
-    return render(request,'home.html', {'restaurant_name':restaurant_name}{'phone_number' :phone_number})
-   
+    return render(request,'home.html',{
+    'restaurant_name':settings.RESTAURANT_NAME,
+    'phone_number':settings.ReSTAURANT_PHONE
+    })
