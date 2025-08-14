@@ -1,72 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width",initial-scale=1.0">
-        <title> RR Restaurant</title>
-        <style>
-            body {
-            margin:0;
-            font-family:Arial,Helvetica,sans-serif;
-            background-color:#fafafa;
-            color:#333;
-            line-height:1.6;
-            }
-header {
-background-color:#ff6347;
-color:white;
-padding:20px;
-text-align:center;
-}
-header h1{
-margin: 0;
-font-size:2.2rem;
-}
-main  {
-max-width:900px;
-margin:30px auto;
-padding: 0 20px;
-text-align:center;
-
-}
-
-
-.welcome-text {
-background : white;
-padding:20px;
-border-radius:8px;
-box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-
-}
-
-footer {
-background-color:#333;
-color:#ddd;
-text-align:center;
-padding:15px 0;
-margin-top:40px;
-
-}
-a:hover {
-text-decoration:underline;
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .hero {
+            background: url('https://source.unsplash.com/1600x900/?restaurant,food') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff6347;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .about, .menu, footer {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .menu-items {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .menu-item {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+        }
+        footer {
+            background: #222;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<header>
-<h1>Wecome to Our Restaurant</h1>
-<p>Contact Us at:{{phone_number}}</p>
-</header>
-<main>
-    <div class="welcome-text">
-        <h2>Delicious food,made with love</h2>
-        <p>Explore our menu and dicover fresh,tasty dishes made just for you.</p>
-    </div>
-</main>
+    <!-- RestaurantHero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to RR Restaurant</h1>
+            <p>Delicious food, warm ambiance, and great memories await you!</p>
+            <p>Contact Us at:{{phone_number}}</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2025{{RR Restaurant}} .All rights reserved.</p>
-</footer>
+    <!-- AboutSection -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>
+            RR Restaurant is your go-to place for authentic flavors and 
+            delightful dining experiences. Established in 2020, we bring 
+            the finest ingredients to your table.
+        </p>
+    </section>
+
+    <!-- MenuHighlights -->
+    <section class="menu" id="menu">
+        <h2>Menu Highlights</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <h3>Chicken Biryani</h3>
+                <p>Spicy, aromatic, and perfectly cooked.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Paneer Butter Masala</h3>
+                <p>Rich, creamy, and vegetarian-friendly.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Chocolate Lava Cake</h3>
+                <p>Perfect ending to your meal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 RR Restaurant. All rights reserved.</p>
+    </footer>
 </body>
 </html>
-    
