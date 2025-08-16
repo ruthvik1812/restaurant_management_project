@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +20,13 @@
             text-align: center;
         }
         header h1 {
-            margin: 0;
+            margin: 10px 0 0;
             font-size: 2.2rem;
+        }
+        .logo {
+        max-width : 150px;
+        display: block;
+        margin: 0 auto 10px;
         }
         main {
             max-width: 900px;
@@ -74,6 +80,9 @@
     </style>
 </head>
 <body>
+    <header>
+        <!--logo prominently displayed-->
+        <img src ="{% static "
     <header>
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
