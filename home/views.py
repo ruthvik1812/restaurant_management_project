@@ -2,12 +2,17 @@ from django.shortcuts import render
 from django.conf import settings
 # Create your views here.
 
-
+#home page
 def home(request):
     return render(request,'home.html',{
     'restaurant_name':settings.RESTAURANT_NAME,
     'phone_number':settings.ReSTAURANT_PHONE
     })
+# reservation page
+def reservarions(request):
+    return render(request,"reservation.html")
+
+#staff login ApI
 @api_view(['post'])
 def staff_login(request):
     try:
