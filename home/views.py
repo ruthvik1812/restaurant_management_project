@@ -20,7 +20,7 @@ def feedback_view(request):
             return redirect('feedback_success')
     else:
         form =FeedbackForm()
-        return render(request, 'feedback_')
+        return render(request, 'feedback_home.html')
 
 
 #staff login ApI
