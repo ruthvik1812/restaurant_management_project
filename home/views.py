@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from .forms import FeedbackForm
 # Create your views here.
 
 #home page
@@ -11,6 +12,16 @@ def home(request):
 # reservation page
 def reservarions(request):
     return render(request,"reservation.html")
+def feedback_view(request):
+    if request.method =="POST":
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('feedback_success')
+    else:
+        form =FeedbackForm()
+        return render(request, 'feedback_')
+
 
 #staff login ApI
 @api_view(['post'])
