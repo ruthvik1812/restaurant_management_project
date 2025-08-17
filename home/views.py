@@ -12,15 +12,11 @@ def home(request):
 # reservation page
 def reservarions(request):
     return render(request,"reservation.html")
-def feedback_view(request):
+def submit_feedback(request):
     if request.method =="POST":
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('feedback_success')
-    else:
-        form =FeedbackForm()
-        return render(request, 'feedback_home.html')
+        comment = request.POST.grt("comment")
+        Feedback.objects.create(comment=comment)
+        return render(request, "feedback_home.html",{"success":"Thank you for your feedback!"})
 
 
 #staff login ApI
