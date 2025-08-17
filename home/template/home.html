@@ -149,9 +149,9 @@
         <p style="color:green; font-weight:bold;">{{ success }}</p>
         {% endif %}
         <h2> Leave your Feedback</h2>
-        <form method="post" action="{%url'submit_feedback' %}"
+        <form method="post" action="{%url'submit_feedback' %}">
         {% csrf_token %}
-        textarea name="comment" palceholder="write your Feedback...." rows="4" required></textarea>
+        <textarea name="comment" placeholder="write your Feedback...." rows="4" required></textarea>
         <br>
         <button type="submit">Submit</button>
         </form>
