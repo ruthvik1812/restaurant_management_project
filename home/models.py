@@ -36,6 +36,8 @@ class Restaurant(models.Model):
         verbose_name="Registered On"
     )
 
+
+
     class Meta:
         verbose_name = "Restaurant"
         verbose_name_plural = "Restaurants"
@@ -43,4 +45,12 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.city}"
+
+    class Meta:
+        verbose_name ="Feedback"
+        verbose_name_plural ="feedback"
+        ordering =["-created_at"]
+    
+    def __str__(self):
+        return self.comment[:50]
 
