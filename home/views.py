@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import FeedbackForm
+from rest_framework.decorators import api_view
+from rest_frsmework.response import Response
 # Create your views here.
 
 #home page
@@ -39,3 +41,24 @@ def staff_login(request):
                 return Responce({'error':'Invalid credintials'}, status=status.HTTP_401_UNAUTHORIZED)
         except Exeception as e:
             return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def get_menu(request):
+    menu = [
+        {
+            "name":"panner Butter Masala",
+            "description":"Rich, creamy, and flavouaful panner curry.",
+            "price":250
+        },
+        {
+            "name":"choclalate Lava Cake",
+            "description": "Soft  chocolate cake with gooey molten center.",
+            "price":150
+        },
+        {
+            "name":"chicken Biryani",
+            "description":"Spicy, aromatic, and perfectly cooked rice with chicken."
+            "price":300
+        },
+    ]
+    return Responce({"menu": menu})
