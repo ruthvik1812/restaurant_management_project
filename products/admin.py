@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import *
+from .models import Menu, order
 
 
-# Custom Admins
-class ItemAdmin(admin.ModelAdmin):
-    list_display = ['item_name','item_price','created_at']
+@admin.register(Menu)
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('id' , 'name', 'price')
+    search_fields =('name',)
+    list_filter = ('price',)
 
-
-# Register your models here.
-admin.site.register(Item,ItemAdmin)
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id','customer_name','created_at')
+    search_fields = ('customer_name',)
+    filter_horizontal = ('items',)
