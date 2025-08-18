@@ -1,4 +1,7 @@
-{% extends "home" RR Restaurant pfficial logo in red and white ...}
+{% load static %}
+{% extends "home.html" %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,8 +96,7 @@
     <header>
         <!--logo prominently displayed-->
         <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
-    <header>
-        <h1>Welcome to Our Restaurant</h1>
+        <h1>Welcome to RR Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
 
@@ -166,5 +168,6 @@
     </footer>
 </body>
 </html>
+
 
 
