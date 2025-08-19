@@ -1,7 +1,4 @@
-{% load static %}
-{% extends "home.html" %}
-
-{% block content %}
+{% extends "home"
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,13 +87,36 @@
         a:hover {
             text-decoration: underline;
         }
+        .search-bar {
+        text-align: center;
+        margin: 30px 0;
+        }
+        .search-bar input[type="text"] {
+        padding: 10px;
+        width: 250px;
+        border: 1 px solid #ccc;
+        border-radius: 6px;
+        }
+        .search-bar button {
+        padding: 10px 15px;
+        background: #ff6347;
+        color:  white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        }
+        .search-bar button:hover {
+        background-color: #e5533d;
+        }
     </style>
 </head>
 <body>
     <header>
         <!--logo prominently displayed-->
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
-        <h1>Welcome to RR Restaurant</h1>
+        <img src ="{% static 'images/logo.png.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
+    <header>
+        <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
 
@@ -125,6 +145,14 @@
             delightful dining experiences. Established in 2020, we bring 
             the finest ingredients to your table.
         </p>
+    </section>
+
+    <!-- Search Bar Section -->
+    <section class="search-bar">
+        <form method="get" action="">
+            <input type="text" name="q" placeholder="Search for menu items....required">
+            <button type="submit">Search</button>
+        </form>
     </section>
 
     <!-- Menu Section -->
@@ -168,6 +196,3 @@
     </footer>
 </body>
 </html>
-
-
-
