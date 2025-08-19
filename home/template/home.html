@@ -73,11 +73,24 @@
             flex-wrap: wrap;
         }
         .menu-item {
-            background: #f4f4f4;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 20px;
-            border-radius: 10px;
+            margin-bottom: 20px;
             width: 250px;
+            text-align: left;
         }
+
+        .menu-item h3 {
+        margin: 0 0 10px;
+        }
+        
+        .price {
+        font-weight: bold;
+        color: #ff6347;
+        }
+
         footer {
             background-color: #222;
             color: white;
@@ -157,24 +170,23 @@
 
     <!-- Menu Section -->
     <section class="menu" id="menu">
-        <h2>Menu Highlights</h2>
+        <h2>Our Menu</h2>
         <div class="menu-items">
             <div class="menu-item">
-                <h3>Chicken Biryani</h3>
-                <p>Spicy, aromatic, and perfectly cooked.</p>
+                {% if menu_items %}
+                {% for item in menu_items %}
+                <div class="menu-item">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p class="price">₹ {{ item.price }}</p>
             </div>
-            <div class="menu-item">
-                <h3>Paneer Butter Masala</h3>
-                <p>Rich, creamy, and vegetarian-friendly.</p>
-            </div>
-            <div class="menu-item">
-                <h3>Chocolate Lava Cake</h3>
-                <p>Perfect ending to your meal.</p>
-            </div>
+            {% endfor %}
+            {% else %}
+                <p>No menu items available at the moment.</p>
         </div>
     </section>
     <!-- Feedback section -->
-    <section class ="feedback-section">
+    <section class ="feedback-section" style="text-align:center; padding:40px;">
         {% if success %}
         <p style="color:green; font-weight:bold;">{{ success }}</p>
         {% endif %}
@@ -182,7 +194,7 @@
         <form method="post" action="{%url'submit_feedback' %}">
         {% csrf_token %}
         <textarea name="comment" placeholder="write your Feedback...." rows="4" required></textarea>
-        <br>
+        <br><br>
         <button type="submit">Submit</button>
         </form>
     </section>
