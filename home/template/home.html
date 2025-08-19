@@ -171,19 +171,18 @@
     <!-- Menu Section -->
     <section class="menu" id="menu">
         <h2>Our Menu</h2>
-        <div class="menu-items">
-            <div class="menu-item">
+        <div class="menu-item">
                 {% if menu_items %}
                 {% for item in menu_items %}
                 <div class="menu-item">
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.description }}</p>
                 <p class="price">₹ {{ item.price }}</p>
-            </div>
+        </div>
             {% endfor %}
             {% else %}
                 <p>No menu items available at the moment.</p>
-        </div>
+        
     </section>
     <!-- Feedback section -->
     <section class ="feedback-section" style="text-align:center; padding:40px;">
@@ -208,5 +207,3 @@
     </footer>
 </body>
 </html>
-
-
