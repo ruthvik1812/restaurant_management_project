@@ -127,7 +127,7 @@
 <body>
     <header>
         <!--logo prominently displayed-->
-        <img src ="{% static 'images/logo.png.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
+        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
     <header>
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
@@ -190,7 +190,7 @@
         <p style="color:green; font-weight:bold;">{{ success }}</p>
         {% endif %}
         <h2> Leave your Feedback</h2>
-        <form method="post" action="{%url'submit_feedback' %}">
+        <form method="post" action="{%url 'submit_feedback'  %}">
         {% csrf_token %}
         <textarea name="comment" placeholder="write your Feedback...." rows="4" required></textarea>
         <br><br>
