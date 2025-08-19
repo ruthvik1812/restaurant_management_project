@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RR Restaurant</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
+        /* Inline styles for quick testing — move to style.css for production */
         body {
             margin: 0;
-            font-family: "Segoe UI", Tahoma,Geneva,Verdana, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
@@ -20,19 +22,10 @@
             text-align: center;
             box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
         }
-        header h1 {
-            margin: 10px 0 0;
-            font-size: 2.2rem;
-            letter-spacing: 1px;
-        }
-        header p {
-        margin :5px 0;
-        font-size: 1rem;
-        }
         .logo {
-        max-width : 150px;
-        display: block;
-        margin: 0 auto 10px;
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 10px;
         }
         main {
             max-width: 1000px;
@@ -81,56 +74,48 @@
             width: 250px;
             text-align: left;
         }
-
         .menu-item h3 {
-        margin: 0 0 10px;
+            margin: 0 0 10px;
         }
-        
         .price {
-        font-weight: bold;
-        color: #ff6347;
+            font-weight: bold;
+            color: #ff6347;
         }
-
+        .search-bar {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            background: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .search-bar button:hover {
+            background-color: #e5533d;
+        }
         footer {
             background-color: #222;
             color: white;
             padding: 25px;
-            font-size:0.9rem;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .search-bar {
-        text-align: center;
-        margin: 30px 0;
-        }
-        .search-bar input[type="text"] {
-        padding: 10px;
-        width: 250px;
-        border: 1 px solid #ccc;
-        border-radius: 6px;
-        }
-        .search-bar button {
-        padding: 10px 15px;
-        background: #ff6347;
-        color:  white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-        }
-        .search-bar button:hover {
-        background-color: #e5533d;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <header>
-        <!--logo prominently displayed-->
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
-    <header>
+        <img src="{% static 'images/logo.png' %}" alt="RR Restaurant Logo" class="logo">
         <h1>Welcome to RR Restaurant</h1>
-        <p>Contact Us at: {{ phone_numbe }}</p>
+        <p>Contact Us at: {{ phone_number }}</p>
     </header>
 
     <main>
@@ -140,7 +125,6 @@
         </div>
     </main>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Welcome to RR Restaurant</h1>
@@ -150,61 +134,56 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about">
         <h2>About Us</h2>
         <p>
-            RR Restaurant is your go-to place for authentic flavors and 
-            delightful dining experiences. Established in 2020, we bring 
-            the finest ingredients to your table.
+            RR Restaurant is your go-to place for authentic flavors and delightful dining experiences.
+            Established in 2020, we bring the finest ingredients to your table.
         </p>
     </section>
 
-    <!-- Search Bar Section -->
     <section class="search-bar">
         <form method="get" action="">
-            <input type="text" name="q" placeholder="Search for menu items....required">
+            <input type="text" name="q" placeholder="Search for menu items..." required>
             <button type="submit">Search</button>
         </form>
     </section>
 
-    <!-- Menu Section -->
     <section class="menu" id="menu">
         <h2>Our Menu</h2>
-        <div class="menu-item">
-                {% if menu_items %}
+        <div class="menu-items">
+            {% if menu_items %}
                 {% for item in menu_items %}
-                <div class="menu-item">
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
-                <p class="price">₹ {{ item.price }}</p>
-        </div>
-            {% endfor %}
+                    <div class="menu-item">
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.description }}</p>
+                        <p class="price">₹ {{ item.price }}</p>
+                    </div>
+                {% endfor %}
             {% else %}
                 <p>No menu items available at the moment.</p>
-        
+            {% endif %}
+        </div>
     </section>
-    <!-- Feedback section -->
-    <section class ="feedback-section" style="text-align:center; padding:40px;">
+
+    <section class="feedback-section" style="text-align:center; padding:40px;">
         {% if success %}
-        <p style="color:green; font-weight:bold;">{{ success }}</p>
+            <p style="color:green; font-weight:bold;">{{ success }}</p>
         {% endif %}
-        <h2> Leave your Feedback</h2>
-        <form method="post" action="{%url 'submit_feedback'  %}">
-        {% csrf_token %}
-        <textarea name="comment" placeholder="write your Feedback...." rows="4" required></textarea>
-        <br><br>
-        <button type="submit">Submit</button>
+        <h2>Leave your Feedback</h2>
+        <form method="post" action="{% url 'submit_feedback' %}">
+            {% csrf_token %}
+            <textarea name="comment" placeholder="Write your feedback..." rows="4" required></textarea>
+            <br><br>
+            <button type="submit">Submit</button>
         </form>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p><strong>Opening Hours</strong></p>
-        <p>Mon-sat: 11am - 11pm</p>
-        <p>sat-sun: 10am - 11pm</p>
+        <p>Mon-Sat: 11am - 11pm</p>
+        <p>Sun: 10am - 11pm</p>
         <p>&copy; 2025 RR Restaurant. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
