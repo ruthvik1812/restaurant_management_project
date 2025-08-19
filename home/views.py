@@ -1,27 +1,47 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import FeedbackForm
+from .models import Feedback, Staff
+from django.contrib.auth.hashers import check_password
+
+
 from rest_framework.decorators import api_view
-from rest_frsmework.response import Response
+from rest_framework.response import Response
+from rest_framework import status
 # Create your views here.
 
-#home page
+#Home page
 def home(request):
-    return render(request,'home.html',{
-    'restaurant_name':settings.RESTAURANT_NAME,
-    'phone_number':settings.ReSTAURANT_PHONE
+    api_url ="http://127.0.0.1:8000/api/menu"
+    try:
+        response = requests.get(api_url)
+        menu_data = response.json()
+        menu_items = menu_data.get("menu",[])
+    except Exeception:
+        menu_items = []
+
+
+    return render(request,'home.html', {
+    "restaurant_name":settings.RESTAURANT_NAME,
+    "phone_number":settings.RESTAURANT_PHONE
+    "menu_items": menu_items,
     })
+
 # reservation page
 def reservarions(request):
     return render(request,"reservation.html")
+
+
 def submit_feedback(request):
     if request.method =="POST":
         comment = request.POST.grt("comment")
         Feedback.objects.create(comment=comment)
         return render(request, "feedback_home.html",{"success":"Thank you for your feedback!"})
 
+    return render(request, "feedback_home.html")
 
-#staff login ApI
+
+#  Staff login ApI
 @api_view(['post'])
 def staff_login(request):
     try:
@@ -32,7 +52,7 @@ def staff_login(request):
         if not email or not password:
             return Response(
                 {'error':'Email and password are required'},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
             staff = Staff.objects.filter(email=email).first()
             if staff and check_password(password,staff.password):
