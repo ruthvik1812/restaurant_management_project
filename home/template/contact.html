@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content ="width=device-width,intial-scale=1.0">
-<title> Contact US</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact US</title>
 <style>
   body  {
     font-family:Arial, sans-serif;
     background-color: #fafafa;
     margin: 0;
     padding: 0;
-            
     }
   form {
     max-width: 400px;
@@ -19,75 +18,73 @@
     padding:20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-
     }
-   input, textarea, button {
+  input, textarea, button {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 6px;
     }
-
-    button {
+  button {
     background-color:#ff6347;
     color: #fff;
     font-size: 16px;
     border: none;
     cursor: pointer;
    }
-    button:hover {
+  button:hover {
     background-color:#e5533d;
     }
-    .error {
+  .error {
     color:red;
     font-size: 14px;
     }
-    </style>
-    </head>
-    <body>
-        <form id ="ContactForm">
-            <h2>Contact US</h2>
-            <label for ="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name">
-            <span id="nameError" class="error"></span>
+</style>
+</head>
+<body>
+    <form id="contactForm">
+        <h2>Contact US</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <span id="nameError" class="error"></span>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" palceholder="Enter your email">
-            <span id="emailError" class="error"></span>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <span id="emailError" class="error"></span>
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" palceholder="your message..."></textarea>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" placeholder="your message..."></textarea>
 
-            <button type="submit">send</button>
-        </form>
-        <script>
-            document.getElemntById("contactForm").addEventListener("submit",function(event){
-            let is valid =true;
-            
-            document.getElementById("nameError").textContent ="";
-            document.getElementById("emailError").textcontent ="";
+        <button type="submit">Send</button>
+    </form>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            let isValid = true;
+
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
 
             const name = document.getElementById("name").value.trim();
-            if(name === "") {
-            document.getElementById("nameError").textContent ="Name is required.";
-            isValid =false;
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Name is required.";
+                isValid = false;
             }
-            const email - document.getElementById("email").value.trim();
-            if(email === "") {
-            document.getElementById("emailError").textContent = "Email is required.";
-            is =false;
+            const email = document.getElementById("email").value.trim();
+            if (email === "") {
+                document.getElementById("emailError").textContent = "Email is required.";
+                isValid = false;
             }
             if (!isValid) {
-            event.preventDefault();
+                event.preventDefault();
             }
-            });
-        </script>
-    
-    <!-- Footer -->
-    <footer>
-        <p><strong> Opening Hours:</strong> Mon-Fri : 11am -11pm, Sat - Sun: 10am -11pm</p>
-        <p>&copy;2025 RR Restaurant. All rights reserved.</p>
-    </footer>
-    </body>
+        });
+    </script>
+
+<!-- Footer -->
+<footer>
+    <p><strong> Opening Hours:</strong> Mon-Fri : 11am -11pm, Sat - Sun: 10am -11pm</p>
+    <p>&copy;2025 RR Restaurant. All rights reserved.</p>
+</footer>
+</body>
 </html>
