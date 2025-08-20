@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RR Restaurant</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-        /* Inline styles for quick testing — move to style.css for production */
+        /* Global Styles */
         body {
             margin: 0;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f8f8f8;
             color: #333;
             line-height: 1.6;
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        h1, h2, h3 {
+            margin: 0;
+        }
+
+        /* Header */
         header {
             background-color: #ff6347;
             color: white;
@@ -23,41 +31,123 @@
             box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
         }
         .logo {
-            max-width: 150px;
+            max-width: 120px;
             display: block;
             margin: 0 auto 10px;
         }
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
+        header h1 {
+            font-size: 2.4rem;
         }
-        .welcome-text {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.12);
+        header p {
+            font-size: 1rem;
+            margin-top: 8px;
         }
+
+        /* Hero Section */
         .hero {
-            background: url('https://source.unsplash.com/1600x900/?restaurant,food') center/cover no-repeat;
+            background: url('https://source.unsplash.com/1600x800/?restaurant,food') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
+            position: relative;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
         }
         .hero .btn {
-            display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 25px;
             background: #ff6347;
             color: white;
             font-weight: bold;
-            text-decoration: none;
             border-radius: 8px;
             transition: background 0.3s ease;
         }
-        .about, .menu, footer {
+        .hero .btn:hover {
+            background: #e5533d;
+        }
+
+        /* Welcome Section */
+        .welcome-text {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .welcome-text h2 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+            color: #ff6347;
+        }
+
+        /* About Section */
+        .about {
             padding: 50px 20px;
             text-align: center;
+            background: #fff;
+        }
+        .about h2 {
+            color: #ff6347;
+            margin-bottom: 15px;
+        }
+        .about p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin: 40px auto;
+            text-align: center;
+        }
+        .search-bar input[type="text"] {
+            padding: 12px;
+            width: 280px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .search-bar button {
+            padding: 12px 20px;
+            background: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .search-bar button:hover {
+            background-color: #e5533d;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 60px 20px;
+            background: #fdfdfd;
+            text-align: center;
+        }
+        .menu h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #ff6347;
         }
         .menu-items {
             display: flex;
@@ -67,81 +157,100 @@
         }
         .menu-item {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             padding: 20px;
-            margin-bottom: 20px;
-            width: 250px;
-            text-align: left;
+            width: 260px;
+            transition: transform 0.2s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
         }
         .menu-item h3 {
-            margin: 0 0 10px;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
         .price {
             font-weight: bold;
             color: #ff6347;
         }
-        .search-bar {
+
+        /* Feedback Section */
+        .feedback-section {
+            background: white;
+            padding: 50px 20px;
+            margin: 50px auto;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             text-align: center;
-            margin: 30px 0;
         }
-        .search-bar input[type="text"] {
-            padding: 10px;
-            width: 250px;
+        .feedback-section textarea {
+            width: 90%;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 1rem;
         }
-        .search-bar button {
-            padding: 10px 15px;
+        .feedback-section button {
+            padding: 12px 20px;
             background: #ff6347;
             color: white;
             border: none;
             border-radius: 6px;
-            cursor: pointer;
             font-weight: bold;
+            cursor: pointer;
         }
-        .search-bar button:hover {
-            background-color: #e5533d;
+        .feedback-section button:hover {
+            background: #e5533d;
         }
+
+        /* Footer */
         footer {
             background-color: #222;
             color: white;
-            padding: 25px;
-            font-size: 0.9rem;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        footer strong {
+            color: #ff6347;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <img src="{% static 'images/logo.png' %}" alt="RR Restaurant Logo" class="logo">
-        <h1>Welcome to RR Restaurant</h1>
+        <h1>RR Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
 
-    <main>
-        <div class="welcome-text">
-            <h2>Delicious food, made with love</h2>
-            <p>Explore our menu and discover fresh, tasty dishes made just for you.</p>
-        </div>
-    </main>
-
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Welcome to RR Restaurant</h1>
-            <p>Delicious food, warm ambiance, and great memories await you!</p>
-            <p>Contact Us at: {{ phone_number }}</p>
-            <a href="#menu" class="btn">View Menu</a>
+            <h1>Delicious food, made with love</h1>
+            <p>Fresh, tasty dishes waiting just for you!</p>
+            <a href="#menu" class="btn">Explore Menu</a>
         </div>
     </section>
 
+    <!-- Welcome -->
+    <div class="welcome-text">
+        <h2>Welcome to RR Restaurant</h2>
+        <p>Experience authentic flavors, cozy vibes, and a memorable dining journey since 2020.</p>
+    </div>
+
+    <!-- About -->
     <section class="about">
         <h2>About Us</h2>
-        <p>
-            RR Restaurant is your go-to place for authentic flavors and delightful dining experiences.
-            Established in 2020, we bring the finest ingredients to your table.
-        </p>
+        <p>At RR Restaurant, we believe food should not just satisfy your hunger but create unforgettable experiences. Every dish is prepared with the finest ingredients and a lot of love.</p>
     </section>
 
+    <!-- Search -->
     <section class="search-bar">
         <form method="get" action="">
             <input type="text" name="q" placeholder="Search for menu items..." required>
@@ -149,16 +258,17 @@
         </form>
     </section>
 
+    <!-- Menu -->
     <section class="menu" id="menu">
         <h2>Our Menu</h2>
         <div class="menu-items">
             {% if menu_items %}
                 {% for item in menu_items %}
-                    <div class="menu-item">
-                        <h3>{{ item.name }}</h3>
-                        <p>{{ item.description }}</p>
-                        <p class="price">₹ {{ item.price }}</p>
-                    </div>
+                <div class="menu-item">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                    <p class="price">₹ {{ item.price }}</p>
+                </div>
                 {% endfor %}
             {% else %}
                 <p>No menu items available at the moment.</p>
@@ -166,23 +276,25 @@
         </div>
     </section>
 
-    <section class="feedback-section" style="text-align:center; padding:40px;">
+    <!-- Feedback -->
+    <section class="feedback-section">
         {% if success %}
-            <p style="color:green; font-weight:bold;">{{ success }}</p>
+        <p style="color:green; font-weight:bold;">{{ success }}</p>
         {% endif %}
-        <h2>Leave your Feedback</h2>
+        <h2>Leave Your Feedback</h2>
         <form method="post" action="{% url 'submit_feedback' %}">
             {% csrf_token %}
             <textarea name="comment" placeholder="Write your feedback..." rows="4" required></textarea>
-            <br><br>
+            <br>
             <button type="submit">Submit</button>
         </form>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p><strong>Opening Hours</strong></p>
-        <p>Mon-Sat: 11am - 11pm</p>
-        <p>Sun: 10am - 11pm</p>
+        <p>Mon - Fri: 11am - 11pm</p>
+        <p>Sat - Sun: 10am - 11pm</p>
         <p>&copy; 2025 RR Restaurant. All rights reserved.</p>
     </footer>
 </body>
