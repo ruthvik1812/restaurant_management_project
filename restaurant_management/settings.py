@@ -123,8 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-RESTAURANT_NAME ="RR RESTRO"
-RESTAURANT_PHONE ="9573380172"
+RESTAURANT_NAME ="RR RESTAURANT"
+RESTAURANT_PHONE ="8639139326"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
