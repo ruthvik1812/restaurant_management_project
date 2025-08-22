@@ -15,6 +15,7 @@ def home(request):
     api_url ="http://127.0.0.1:8000/api/menu"
     try:
         response = requests.get(api_url)
+        resonse.raise_for_status()
         menu_data = response.json()
         menu_items = menu_data.get("menu",[])
     except Exeception:
@@ -22,8 +23,8 @@ def home(request):
 
 
     return render(request,'home.html', {
-    "restaurant_name":settings.RESTAURANT_NAME,
-    "phone_number":settings.RESTAURANT_PHONE
+    "restaurant_name": settings.RESTAURANT_NAME,
+    "phone_number": settings.RESTAURANT_PHONE,
     "menu_items": menu_items,
     })
 
