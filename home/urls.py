@@ -9,3 +9,6 @@ urlpatterns = [
     path("reservation/",view.reservations ,name="reservation"),
     path("menu/",views.menu_list, name="menu"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += Static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
