@@ -81,5 +81,21 @@ def get_menu(request):
             "description":"Spicy, aromatic, and perfectly cooked rice with chicken."
             "price":300
         },
-    ]
+    ](
     return Responce({"menu": menu})
+ # Dedicated Menu Page View
+
+ def menu_page(request):
+     """
+     Fetches menu items from the API and renders them on the menu page.
+     
+     """
+     api_url = "https://127.0.0.1:8000/api/menu"
+     try:
+        response = requests.get(api_url)
+        response.raise_for_status()
+        menu_data = response.json()
+        menu_items = menu_data.get("menu",[])
+    except Execption:
+        menu_items = []
+    return render(request, "menu_list.html", {"menu_items": menu_items})
