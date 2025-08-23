@@ -46,167 +46,185 @@
         header h1 {
             font-size: 2.4rem;
             font-weight: bold;
-            letter-spacing: 1px;
+          
         }
 
-        header p {
-        font-size: 1rem;
-        margin-top: 5px;
-        pacity: 0.9;
         
         }
         /* =============== HERO SECTION ==============*/
         .hero {
-        position: relative;
-        background: url('https//sourcr.unplash.com/1600x900/?restaurant,food');
-        color: white;
-        padding: 120px 20px;
-        text-align: center;
-        display: fllex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+           position: relative;
+           background: url("{% static 'images/restaurant-hero.jpg %}"); center/cover no-no-repeat
+           color: white;
+           padding: 120px 20px;
+           text-align: center;
+       
         }
 
         .hero::before {
-         content: "";
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background: rgba(0, 0, 0 ,0.5);
-         z-index: 0;
+           content: "";
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0, 0, 0 ,0.5);
+           z-index: 0;
          }
 
-         .hero h2 {
-         postion: relative;
-         font-size: 2.8rem;
-         font-weight: bold;
-         margin-bottom: 15px;
-         z-index: 1;
-         animation: fadeUp 1.2s ease-in-out;
+         .hero h2 , .hero p, .hero .btn {
+           postion: relative;
+           z-index: 1;
+
+        
          }
         
-        .hero p {
+        .hero h2 {
+           font-size: 2.8rem;
+           font-weight: bold;
+           margin-bottom: 15px;
+           animation: fadeup 1.2s ease-in-out;
         
-        postion: relative;
-        font-size: 1.2rem;
-        margiin-bottom: 25px;
-        z-index: 1;
-        pacity: 0.9;
-
         }
 
         .hero .btn {
-        position: relative;
-        display: inline-block;
-        padding: 12px 25px;
-        background: linear-gradient(135deg,#ff6347, #ff3e7f);
-        color: white;
-        font-weight: bold;
-        border-radius: 10px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        z-index: 1;
+           display: inline-block;
+           padding: 12px 25px;
+           background: linear-gradient(135deg,#ff6347, #ff3e7f);
+           color: white;
+           font-weight: bold;
+           border-radius: 10px;
+           box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+           z-index: 1;
 
         }
 
         .hero .btn:hover {
-        
-        transform:translateY(-4x);
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+         
+           transform:translateY(-4x);
+           box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
 
         }
 
         /* ==================SEARCH_BAR ===============*/
         .search-bar {
         
-        margin: 30px auto;
-        text-align: center;
+           margin: 30px auto;
+           text-align: center;
         }
         .search-bar input[type="text"] {
-        padding: 12px 15px;
-        width: 300;
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        font-size: 1rem;
-        outline: none;
-        transition: all 0.3s ease;
+           padding: 12px 15px;
+           width: 300;
+           border: none;
+           border-radius: 8px;
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+           font-size: 1rem;
+           outline: none;
+           transition: all 0.3s ease;
 
         }
 
         .search-bar button {
-        padding: 12px 18px;
-        background: #ff6347;
-        border: none;
-        color: white;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 8px;
-        margin-kkeft: 10px;
-        cursor: pointer;
-        transtion: background 0.3s ease;
+           padding: 12px 18px;
+           background: #ff6347;
+           border: none;
+           color: white;
+           font-size: 1rem;
+           font-weight: bold;
+           border-radius: 8px;
+           margin-kkeft: 10px;
+           cursor: pointer;
+           transtion: background 0.3s ease;
         }
         .search-bar button:hover {
-         background: #e5533d;
-         }
+           background: #e5533d;
+        }
          /* ========= MENU SECTION =====*/
          .menu {
-         padding: 50px 20px;
-         text-align: center;
+           padding: 50px 20px;
+           text-align: center;
          }
          .menu h2 {
          
-         font-size: 2.2rem;
-         color: #ff6347;
-         margin-bottom: 25px;
-         }
-         .menu-itmes {
-         background: rgba(255, 255, 0.8);
-         backdrop-filter: blur(10px);
-         border-radius: 12px;
-         box-shadow: 0 4px 15 px rgba(0,  0, 0, 0.1);
-         padding: 20px;
-         width: 280px;
-         transtion: all0.3s ease;
-         text-align: left;
-         }
+           font-size: 2.2rem;
+           color: #ff6347;
+           margin-bottom: 25px;
+        }
+         .menu-items {
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: 20px;
+
+         
+        }
+        .menu-item {
+           background: rgba(255, 255, 255, 0.8);
+           backdrop-filter: blur(10px);
+           border-radius: 12px;
+           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+           padding: 20px;
+           width: 20px;
+           transition: all 0.3s ease;
+           text-align: left;
+           
+        }
          .menu-item:hover {
-         transformL translateY(-8px0);
-         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-         }
+           transform: translateY(-8px);
+           box-shadow: 0 8px 20px rgba(0, 0, 0.0.3);
+        }
          .menu-item h3 {
-         margin-bottom: 8px;
-         color: #333;
-         }
-         .menu-itme h3 {
-         margin-bottom: 8px;
-         color: #333;
-         }
+           margin-bottom: 8px;
+           color: #333;
+        }
          .price {
-         coor: #ff3e7f;
-         font-weight: bold;
-         font-sixe: 1.1rem;
+           coor: #ff3e7f;
+           font-weight: bold;
+           font-sixe: 1.1rem;
+        }
+         /* =============FEEDBACK SECTION ==================*/
+        .feedback-section {
+           padding: 40px;
+           text-align: center;
          }
+         .feedback-section textarea {
+           width: 300px;
+           padding: 10px;
+           border-radius: 8px;
+           border: 1px solid #ccc;
+           resize: none;
+        }
+         .feedback-section button {
+           padding: 10px 18px;
+           margin-top: 10px;
+           background: #ff3e7f;
+           border: none;
+           color: white;
+           font-weight: bold;
+           border-radius: 8px;
+           cursor: pointer;
+        }
+        .feedback-section button:hover {
+           background: #e55533d;
+        }
          /* ===============FOOTER ====================*/
 
-         footer {
-         background: #222;
-         color: white;
-         text-align: center;
-         padding: 20px;
-         font--align: center;
-         margin-top: 40px;
+        footer {
+          background: #222;
+          color: white;
+          text-align: center;
+          padding: 20px;
+          font--align: center;
+          margin-top: 40px;
         }
 
         footer a {
-        color: #ff6347;
-        transition: color 0.3s ease;
+          color: #ff6347;
+          transition: color 0.3s ease;
         }
         footer a:hover {
-        color: #fff;
+          color: #fff;
         }
         /* =================ANIMATIONS =================*/
         @keyframes fadeUp {
@@ -215,7 +233,7 @@
         }
         
         /* =============RESPONSIVE DESIGN ===============*/
-        @media scrreen and (max-width: 768) {
+        @media screen and (max-width: 768) {
         header h1:{
         font-size: 1.8rem;
         }
@@ -236,76 +254,57 @@
 <body>
     <header>
         <!--logo prominently displayed-->
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo in red and white" class="logo">
-    <header>
+        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
+    
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
-
-    <main>
-        <div class="welcome-text">
-            <h2>Delicious food, made with love</h2>
-            <p>Explore our menu and discover fresh, tasty dishes made just for you.</p>
-        </div>
-    </main>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to {{ restaurant_name }}</h1>
-            <p>Delicious food, warm ambiance, and great memories await you!</p>
-            <p>Contact Us at: {{ phone_number }}</p>
-            <a href="#menu" class="btn">View Menu</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about">
-        <h2>About Us</h2>
-        <p>
-            RR Restaurant is your go-to place for authentic flavors and 
-            delightful dining experiences. Established in 2020, we bring 
-            the finest ingredients to your table.
-        </p>
-    </section>
-
-    <!-- Search Bar Section -->
-    <section class="search-bar">
-        <form method="get" action="">
-            <input type="text" name="q" placeholder="Search for menu items....required">
-            <button type="submit">Search</button>
-        </form>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
-        <h2>Our Menu</h2>
-        <div class="menu-item">
-                {% if menu_items %}
-                {% for item in menu_items %}
-                <div class="menu-item">
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
-                <p class="price">₹ {{ item.price }}</p>
-        </div>
-            {% endfor %}
-            {% else %}
-                <p>No menu items available at the moment.</p>
-        
-    </section>
-    <!-- Feedback section -->
-    <section class ="feedback-section" style="text-align:center; padding:40px;">
-        {% if success %}
-        <p style="color:green; font-weight:bold;">{{ success }}</p>
-        {% endif %}
-        <h2> Leave your Feedback</h2>
-        <form method="post" action="{%url 'submit_feedback'  %}">
+<!-- HERO -->
+ <section class="hero">
+    <h2>Delicious food, made with love</h2>
+    <p>Fresh, tasty dishes crafted specially for you</p>
+    <a href="#menu" class="btn">View Menu</a>
+ </section>
+ <!-- SEARCH BAR -->
+ <section class="search-bar">
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Search for menu items..." value="{{ request.GET.q }}">
+        <buton type="submit">Search</button>
+    </form>
+ </section>
+ <!-- MENU SECTION -->
+ <section class="menu" id="menu">
+    <h2> Our Menu</h2>
+    <div class="menu-items">
+        {
+            % if menu-items %
+        }
+        {% for item in menu_items %}
+    <div class="menu-item">
+        <h3> {{ item.name }}</h3>
+        <p> {{ item.description }}</p>
+        <p class="price">₹ {{ item.price }}</p>
+    
+    </div>
+    {% endfor %}
+    {% else %}
+    <p> No menu items available right now.</p>
+    {% endif %}
+    </div>
+ </section>
+ <!-- FEEDBACK SECTION-->
+ <secton class="feedback-section">
+    {% if success %}
+    <p style="color:green; font-weight:bold;">{{ success }}</p>
+    {% endif %}
+    <h2>Leave Your Feedback</h2>
+    <form method="post" action="{% url'submit_feedback' %}">
         {% csrf_token %}
-        <textarea name="comment" placeholder="write your Feedback...." rows="4" required></textarea>
-        <br><br>
+        <textarea name="comment" placeholder="Write your feedback..." rows="4" required></textarea>
+        <br>
         <button type="submit">Submit</button>
-        </form>
-    </section>
+    </form>
+ </secton>
 
     <!-- Footer -->
     <footer>
