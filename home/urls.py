@@ -7,5 +7,5 @@ urlpatterns = [
     path("feedback/",views.submit_feedback, name="feedback"),
     path("staff/login/",staff_login, name="staff-login"),
     path("reservation/",view.reservations ,name="reservation"),
-    path("api/menu/",views.get_menu, name="menu-api"),
+    path("menu/",views.menu_list, name="menu"),
 ]
