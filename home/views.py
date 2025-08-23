@@ -8,6 +8,7 @@ from django.contrib.auth.hashers import check_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from .forms import ContactForm
 # Create your views here.
 
 #Home page
@@ -20,7 +21,14 @@ def home(request):
         menu_items = menu_data.get("menu",[])
     except Exeception:
         menu_items = []
-
+    # Contact form Logic
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ContactForm()
 
     return render(request,'home.html', {
     "restaurant_name": settings.RESTAURANT_NAME,
