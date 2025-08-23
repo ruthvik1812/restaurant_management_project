@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RR Restaurant</title>
@@ -16,8 +17,8 @@
             font-family:"Poppins","Segoe UI",sans-serif;
             background-color:#f7f8fc;
             color: #222;
-            line-wweight:1.6;
-            scroll-scroll-behhaviour: smooth;
+            line-height:1.6;
+            scroll-behaviour: smooth;
          
         }
         a {
@@ -31,7 +32,7 @@
             text-align: center;
             color: white;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
-            position: sticky;
+            postion: sticky;
             top: 0;
             z-index: 1000;
         }
@@ -54,7 +55,7 @@
         /* =============== HERO SECTION ==============*/
         .hero {
            position: relative;
-           background: url("{% static 'static/images/restaurant-hero.jpg %}"); center/cover no-no-repeat
+           background: url("{% static 'images/restaurant-hero.jpg' %}")center/cover no-repeat;
            color: white;
            padding: 120px 20px;
            text-align: center;
@@ -115,7 +116,7 @@
         }
         .search-bar input[type="text"] {
            padding: 12px 15px;
-           width: 300;
+           width: 300px;
            border: none;
            border-radius: 8px;
            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -133,9 +134,9 @@
            font-size: 1rem;
            font-weight: bold;
            border-radius: 8px;
-           margin-kkeft: 10px;
+           margin-left: 10px;
            cursor: pointer;
-           transtion: background 0.3s ease;
+           transition: background 0.3s ease;
         }
         .search-bar button:hover {
            background: #e5533d;
@@ -165,7 +166,7 @@
            border-radius: 12px;
            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
            padding: 20px;
-           width: 20px;
+           width: 250px;
            transition: all 0.3s ease;
            text-align: left;
            
@@ -179,9 +180,9 @@
            color: #333;
         }
          .price {
-           coor: #ff3e7f;
+           color: #ff3e7f;
            font-weight: bold;
-           font-sixe: 1.1rem;
+           font-size: 1.1rem;
         }
         
          /* =============FEEDBACK SECTION ==================*/
@@ -216,7 +217,7 @@
           color: white;
           text-align: center;
           padding: 20px;
-          font--align: center;
+          font-align: center;
           margin-top: 40px;
         }
 
@@ -234,8 +235,8 @@
         }
         
         /* =============RESPONSIVE DESIGN ===============*/
-        @media screen and (max-width: 768) {
-        header h1:{
+        @media screen and (max-width: 768px) {
+        header h1{
         font-size: 1.8rem;
         }
         .hero h2 {
@@ -255,7 +256,7 @@
 <body>
     <header>
         <!--logo prominently displayed-->
-        <img src ="{% static 'static/images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
+        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
     
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
@@ -283,7 +284,7 @@
  <section class="search-bar">
     <form method="get" action="">
         <input type="text" name="q" placeholder="Search for menu items..." value="{{ request.GET.q }}">
-        <buton type="submit">Search</button>
+        <button type="submit">Search</button>
     </form>
  </section>
  <!-- MENU SECTION -->
@@ -291,7 +292,7 @@
     <h2> Our Menu</h2>
     <div class="menu-items">
         {
-            % if menu-items %
+            % if menu_items %
         }
         {% for item in menu_items %}
     <div class="menu-item">
@@ -307,7 +308,7 @@
     </div>
  </section>
  <!-- FEEDBACK SECTION-->
- <secton class="feedback-section">
+ <section class="feedback-section">
     {% if success %}
     <p style="color:green; font-weight:bold;">{{ success }}</p>
     {% endif %}
@@ -318,16 +319,16 @@
         <br>
         <button type="submit">Submit</button>
     </form>
- </secton>
+ </section>
  <!-- Google Map Section -->
- <section style="padding: 30px; background-color: #fafafa;text-align: center; border-top: 1px solid #ddd;">
-     <h2 style="color: #ff6347; margin-bottom: 10px;"> 📍 Our Location </h2>
-     <p style="font-size: 16px; color: #555;">
+ <section style="padding: 40px; background-color: #fefefe;text-align: center; border-top: 2px solid #eee; margin-top: 30px;">
+     <h2 style="color: #ff6347; font-size:28px; margin-bottom: 15px;"> 📍 Our Location </h2>
+     <p style="font-size: 16px; color: #444; margin-bottom: 20px; line-height: 1.6;">
         <strong>RR Restaurant</strong><br>
         # 17-3/1 mamindlawada, huzurabad, Telangana, India<br>
         phone: +91 8639193926
      </p>
-     <div style="margin-top: 20px">
+     <div style="max-width: 900px; margin: 0 auto;">
         <iframe
             src="https://www.Google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.434166666!2d78.487!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99f741e3f!2sRR%20Restaurant115e0!3m2!1sen!2sin!4v1710012345678"
             width="100%" height="350" style="border:0; border-radius:10px;"
@@ -346,6 +347,3 @@
     </footer>
 </body>
 </html>
-
-
-
