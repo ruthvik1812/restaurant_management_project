@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RR Restaurant</title>
@@ -14,18 +13,18 @@
             box-sizing: border-box;
         }
         body {
-            font-family:"Poppins","Segoe UI",sans-serif;
-            background-color:#f7f8fc;
+            font-family: "Poppins", "Segoe UI", sans-serif;
+            background-color: #f7f8fc;
             color: #222;
-            line-height:1.6;
+            line-height: 1.6;
             scroll-behavior: smooth;
-         
         }
         a {
             text-decoration: none;
             color: inherit;
         }
-         /* ========= HEADER =============*/
+
+        /* ========= HEADER =============*/
         header {
             background: linear-gradient(135deg, #ff6347, #ff3e7f);
             padding: 25px;
@@ -40,313 +39,292 @@
             max-width: 120px;
             display: block;
             margin: 0 auto 10px;
-            filter: drop-shadow(0px 3px 6px rgba(0, 0, 0,0.4));
-
+            filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.4));
         }
-
         header h1 {
             font-size: 2.4rem;
             font-weight: bold;
-          
         }
 
-        
-        
         /* =============== HERO SECTION ==============*/
         .hero {
-           position: relative;
-           background: url("{% static 'images/restaurant-hero.jpg' %}")center/cover no-repeat;
-           color: white;
-           padding: 120px 20px;
-           text-align: center;
-       
+            position: relative;
+            background: url("{% static 'images/restaurant-hero.png' %}") center/cover no-repeat;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
         }
-
         .hero::before {
-           content: "";
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background: rgba(0, 0, 0 ,0.5);
-           z-index: 0;
-         }
-
-         .hero h2 , .hero p, .hero .btn {
-           postion: relative;
-           z-index: 1;
-
-        
-         }
-        
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        .hero h2, .hero p, .hero .btn {
+            position: relative;
+            z-index: 1;
+        }
         .hero h2 {
-           font-size: 2.8rem;
-           font-weight: bold;
-           margin-bottom: 15px;
-           animation: fadeup 1.2s ease-in-out;
-        
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: fadeUp 1.2s ease-in-out;
         }
-
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
         .hero .btn {
-           display: inline-block;
-           padding: 12px 25px;
-           background: linear-gradient(135deg,#ff6347, #ff3e7f);
-           color: white;
-           font-weight: bold;
-           border-radius: 10px;
-           box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-           transition: transform 0.3s ease, box-shadow 0.3s ease;
-           z-index: 1;
-
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #ff6347, #ff3e7f);
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1;
         }
-
         .hero .btn:hover {
-         
-           transform: translateY(-4px);
-           box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
-
+            transform: translateY(-4px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* ==================SEARCH_BAR ===============*/
+        /* ==================SEARCH BAR ===============*/
         .search-bar {
-        
-           margin: 30px auto;
-           text-align: center;
+            margin: 30px auto;
+            text-align: center;
         }
         .search-bar input[type="text"] {
-           padding: 12px 15px;
-           width: 300px;
-           border: none;
-           border-radius: 8px;
-           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-           font-size: 1rem;
-           outline: none;
-           transition: all 0.3s ease;
-
+            padding: 12px 15px;
+            width: 300px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
         }
-
         .search-bar button {
-           padding: 12px 18px;
-           background: #ff6347;
-           border: none;
-           color: white;
-           font-size: 1rem;
-           font-weight: bold;
-           border-radius: 8px;
-           margin-left: 10px;
-           cursor: pointer;
-           transition: background 0.3s ease;
+            padding: 12px 18px;
+            background: #ff6347;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
         .search-bar button:hover {
-           background: #e5533d;
-        }
-         /* ========= MENU SECTION =====*/
-         .menu {
-           padding: 50px 20px;
-           text-align: center;
-         }
-         .menu h2 {
-         
-           font-size: 2.2rem;
-           color: #ff6347;
-           margin-bottom: 25px;
-        }
-         .menu-items {
-           display: flex;
-           flex-wrap: wrap;
-           justify-content: center;
-           gap: 20px;
-
-         
-        }
-        .menu-item {
-           background: rgba(255, 255, 255, 0.8);
-           backdrop-filter: blur(10px);
-           border-radius: 12px;
-           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-           padding: 20px;
-           width: 250px;
-           transition: all 0.3s ease;
-           text-align: left;
-           
-        }
-         .menu-item:hover {
-           transform: translateY(-8px);
-           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-         .menu-item h3 {
-           margin-bottom: 8px;
-           color: #333;
-        }
-         .price {
-           color: #ff3e7f;
-           font-weight: bold;
-           font-size: 1.1rem;
-        }
-        
-         /* =============FEEDBACK SECTION ==================*/
-        .feedback-section {
-           padding: 40px;
-           text-align: center;
-         }
-         .feedback-section textarea {
-           width: 300px;
-           padding: 10px;
-           border-radius: 8px;
-           border: 1px solid #ccc;
-           resize: none;
-        }
-         .feedback-section button {
-           padding: 10px 18px;
-           margin-top: 10px;
-           background: #ff3e7f;
-           border: none;
-           color: white;
-           font-weight: bold;
-           border-radius: 8px;
-           cursor: pointer;
-        }
-        .feedback-section button:hover {
-           background: #e55533d;
-        }
-         /* ===============FOOTER ====================*/
-
-        footer {
-          background: #222;
-          color: white;
-          text-align: center;
-          padding: 20px;
-          font-align: center;
-          margin-top: 40px;
+            background: #e5533d;
         }
 
-        footer a {
-          color: #ff6347;
-          transition: color 0.3s ease;
+        /* ========= MENU SECTION =====*/
+        .menu {
+            padding: 50px 20px;
+            text-align: center;
         }
-        footer a:hover {
-          color: #fff;
-        }
-        /* =================ANIMATIONS =================*/
-        @keyframes fadeUp {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0);}
-        }
-        
-        /* =============RESPONSIVE DESIGN ===============*/
-        @media screen and (max-width: 768px) {
-        header h1{
-        font-size: 1.8rem;
-        }
-        .hero h2 {
-         font-size: 2rem;     
+        .menu h2 {
+            font-size: 2.2rem;
+            color: #ff6347;
+            margin-bottom: 25px;
         }
         .menu-items {
-        flex-direction: column;
-        align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
-        .search-bar input[type="text"] {
-        width: 220px;
+        .menu-item {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 250px;
+            transition: all 0.3s ease;
+            text-align: center;
         }
-     }
+        .menu-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .menu-item h3 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .price {
+            color: #ff3e7f;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
 
+        /* ============= FEEDBACK SECTION ==================*/
+        .feedback-section {
+            padding: 40px;
+            text-align: center;
+        }
+        .feedback-section textarea {
+            width: 300px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+        .feedback-section button {
+            padding: 10px 18px;
+            margin-top: 10px;
+            background: #ff3e7f;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .feedback-section button:hover {
+            background: #e5533d;
+        }
+
+        /* =============== FOOTER ====================*/
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        footer a {
+            color: #ff6347;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* ================= ANIMATIONS =================*/
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============= RESPONSIVE DESIGN ===============*/
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .menu-items {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-bar input[type="text"] {
+                width: 220px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- HEADER -->
     <header>
-        <!--logo prominently displayed-->
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
-    
+        <img src="{% static 'images/logo.png' %}" alt="RR Restaurant official logo" class="logo">
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
-    <!-- Contact US Form-->
-<section style="background-color=#f8f8f8; padding: 20px; margin-top:30px">
-<h2> Contact US</h2>
-<form method ="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-    </form>
-</section>
 
-<!-- HERO -->
- <section class="hero">
-    <h2>Delicious food, made with love</h2>
-    <p>Fresh, tasty dishes crafted specially for you</p>
-    <a href="#menu" class="btn">View Menu</a>
- </section>
- <!-- SEARCH BAR -->
- <section class="search-bar">
-    <form method="get" action="">
-        <input type="text" name="q" placeholder="Search for menu items..." value="{{ request.GET.q }}">
-        <button type="submit">Search</button>
-    </form>
- </section>
- <!-- MENU SECTION -->
- <section class="menu" id="menu">
-    <h2> Our Menu</h2>
-    <div class="menu-items">
-        {% if menu_items %}
-        {% for item in menu_items %}
-    <div class="menu-item">
-        <h3> {{ item.name }}</h3>
-        <p> {{ item.description }}</p>
-        <p class="price">₹ {{ item.price }}</p>
-    
-    </div>
-    {% endfor %}
-    {% else %}
-    <p> No menu items available right now.</p>
-    {% endif %}
-    </div>
- </section>
- <!-- FEEDBACK SECTION-->
- <section class="feedback-section">
-    {% if success %}
-    <p style="color:green; font-weight:bold;">{{ success }}</p>
-    {% endif %}
-    <h2>Leave Your Feedback</h2>
-    <form method="post" action="{% url 'submit_feedback' %}">
-        {% csrf_token %}
-        <label for="comment" style="font-weight:bold;">Your Feedback:</label>
-        <br>
-        <textarea id="comment" name="comment" placeholder="write your feedback...."row="4 required></textarea>
-         <br><br>
-        <button type="submit" style="background:#ff6347; color:#fff; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
-            Submit
-        </button>
-    </form>
- </section>
- <!-- Google Map Section -->
- <section style="padding: 40px; background-color: #fefefe;text-align: center; border-top: 2px solid #eee; margin-top: 30px;">
-     <h2 style="color: #ff6347; font-size:28px; margin-bottom: 15px;"> 📍 Our Location </h2>
-     <p style="font-size: 16px; color: #444; margin-bottom: 20px; line-height: 1.6;">
-        <strong>{{ location.name }}</strong><br>
-        {{ location.address }}, {{ location.city }}, {{location.state }} - {{ location .zip_code }}<br>
+    <!-- HERO -->
+    <section class="hero">
+        <h2>Delicious food, made with love</h2>
+        <p>Fresh, tasty dishes crafted specially for you</p>
+        <a href="#menu" class="btn">View Menu</a>
+    </section>
 
-        phone: {{ location.phone }}
-     </p>
-     <p style="color:red;">Location details not available.</p>
-     {% endif %}
-     
-     <div style="max-width: 900px; margin: 0 auto;">
-        <iframe
-            src="https://www.Google.com/maps/embed?pb=YOUR_VALID_EMBED_URL"
-            width="100%" height="350" style="border:0; border:0; border-radius:10px;"
-            allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-     </div>
- </section>
-<!-- Footer Section--->
+    <!-- SEARCH BAR -->
+    <section class="search-bar">
+        <form method="get" action="">
+            <input type="text" name="q" placeholder="Search for menu items..." value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu" id="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-items">
+            {% if menu_items %}
+                {% for item in menu_items %}
+                    <div class="menu-item">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        {% endif %}
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.description }}</p>
+                        <p class="price">₹ {{ item.price }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No menu items available right now.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- FEEDBACK SECTION -->
+    <section class="feedback-section">
+        {% if success %}
+            <p style="color:green; font-weight:bold;">{{ success }}</p>
+        {% endif %}
+        <h2>Leave Your Feedback</h2>
+        <form method="post" action="{% url 'submit_feedback' %}">
+            {% csrf_token %}
+            <label for="comment" style="font-weight:bold;">Your Feedback:</label><br>
+            <textarea id="comment" name="comment" placeholder="Write your feedback..." rows="4" required></textarea>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- GOOGLE MAP + LOCATION -->
+    <section style="padding: 40px; background-color: #fefefe; text-align: center; border-top: 2px solid #eee; margin-top: 30px;">
+        <h2 style="color: #ff6347; font-size:28px; margin-bottom: 15px;">📍 Our Location</h2>
+        {% if location %}
+            <p style="font-size: 16px; color: #444; margin-bottom: 20px; line-height: 1.6;">
+                <strong>{{ location.name }}</strong><br>
+                {{ location.address }}, {{ location.city }}, {{ location.state }} - {{ location.zip_code }}<br>
+                Phone: {{ location.phone }}
+            </p>
+        {% else %}
+            <p style="color:red;">Location details not available.</p>
+        {% endif %}
+        <div style="max-width: 900px; margin: 0 auto;">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=YOUR_VALID_EMBED_URL"
+                width="100%" height="350" style="border:0; border-radius:10px;"
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <p><strong>Opening Hours</strong></p>
-        <p>Mon-sat: 11am - 11am</p>
-        <p>sat-sun: 10am - 11pm</p>
+        <p>Mon-Fri: 11am - 11pm</p>
+        <p>Sat-Sun: 10am - 11pm</p>
         <p>&copy; 2025 RR Restaurant. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
