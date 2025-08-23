@@ -54,7 +54,7 @@
         /* =============== HERO SECTION ==============*/
         .hero {
            position: relative;
-           background: url("{% static 'images/restaurant-hero.jpg %}"); center/cover no-no-repeat
+           background: url("{% static 'static/images/restaurant-hero.jpg %}"); center/cover no-no-repeat
            color: white;
            padding: 120px 20px;
            text-align: center;
@@ -255,7 +255,7 @@
 <body>
     <header>
         <!--logo prominently displayed-->
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
+        <img src ="{% static 'static/images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
     
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
@@ -346,5 +346,6 @@
     </footer>
 </body>
 </html>
+
 
 
