@@ -81,6 +81,7 @@ class RestaurantLocation(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=10)
+    phone = models.CharField(max_length=200, default="+91 8639139326")
         
         def __str__(self):
             return f"{self.name} - {self.city}, {self.state}"
