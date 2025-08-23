@@ -103,7 +103,7 @@
 
         .hero .btn:hover {
          
-           transform:translateY(-4px);
+           transform: translateY(-4px);
            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
 
         }
@@ -267,11 +267,8 @@
 <form method ="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" style="background-color:#ff6347; color: white; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">
-        Submit
-    </button>
-
-</form>
+    <button type="submit">Submit</button>
+    </form>
 </section>
 
 <!-- HERO -->
@@ -313,9 +310,13 @@
     <h2>Leave Your Feedback</h2>
     <form method="post" action="{% url 'submit_feedback' %}">
         {% csrf_token %}
-        <textarea name="comment" placeholder="Write your feedback..." rows="4" required></textarea>
+        <label for="comment" style="font-weight:bold;">Your Feedback:</label>
         <br>
-        <button type="submit">Submit</button>
+        <textarea id="comment" name="comment" placeholder="write your feedback...."row="4 required></textarea>
+         <br><br>
+        <button type="submit" style="background:#ff6347; color:#fff; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
+            Submit
+        </button>
     </form>
  </section>
  <!-- Google Map Section -->
