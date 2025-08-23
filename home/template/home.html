@@ -260,6 +260,19 @@
         <h1>Welcome to Our Restaurant</h1>
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
+    <!-- Contact US Form-->
+<section style="background-color=#f8f8f8; padding: 20px; margin-top:30px">
+<h2> Contact US</h2>
+<form method ="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color:#ff6347; color: white; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">
+        Submit
+    </button>
+
+</form>
+</section>
+
 <!-- HERO -->
  <section class="hero">
     <h2>Delicious food, made with love</h2>
