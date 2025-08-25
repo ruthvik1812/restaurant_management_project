@@ -13,14 +13,7 @@ from .forms import ContactForm
 
 #Home page
 def home(request):
-    api_url ="http://127.0.0.1:8000/api/menu"
-    try:
-        response = requests.get(api_url)
-        response.raise_for_status()
-        menu_data = response.json()
-        menu_items = menu_data.get("menu",[])
-    except Exeception:
-        menu_items = []
+   menu_items = MenuItem.objects.all()
     
     # Contact form Logic
     if request.method == "POST":
@@ -57,7 +50,7 @@ def submit_feedback(request):
 
 
 #  Staff login ApI
-@api_view(['post'])
+@api_view(['POST'])
 def staff_login(request):
     try:
         email = request.data.get('email')
@@ -74,42 +67,25 @@ def staff_login(request):
                 return Response({'message':'Login successful'}, status=status.HTTP_200_OK)
             else:
                 return Responce({'error':'Invalid credintials'}, status=status.HTTP_401_UNAUTHORIZED)
-        except Exeception as e:
+        except Execption as e:
             return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+# =============== MENU API ==============#
 @api_view(['GET'])
 def get_menu(request):
-    menu = [
-        {
-            "name":"panner Butter Masala",
-            "description":"Rich, creamy, and flavouaful panner curry.",
-            "price":250
-        },
-        {
-            "name":"choclalate Lava Cake",
-            "description": "Soft  chocolate cake with gooey molten center.",
-            "price":150
-        },
-        {
-            "name":"chicken Biryani",
-            "description":"Spicy, aromatic, and perfectly cooked rice with chicken."
-            "price":300
-        },
-    ](
-    return Responce({"menu": menu})
+    menu_items = MenuItem.objects.all()
+
+    menu = []
+    for item in menu_items:
+        menu.append({
+            "name": item.name,
+            "description": ite.description,
+            "price": item.image.url if item.image else None
+        })
+    return Response({"menu": menu})
  # Dedicated Menu Page View
 
  def menu_page(request):
-     """
-     Fetches menu items from the API and renders them on the menu page.
-     
-     """
-     api_url = "https://127.0.0.1:8000/api/menu"
-     try:
-        response = requests.get(api_url)
-        response.raise_for_status()
-        menu_data = response.json()
-        menu_items = menu_data.get("menu",[])
-    except Execption:
-        menu_items = []
+    menu_items = MenuItem.objects.all()
+    
     return render(request, "menu_list.html", {"menu_items": menu_items})
