@@ -69,9 +69,9 @@ class Menu(models.Model):
     verbose_name="Price"
     )
     image = models.ImageField(
-    upload_to="menu_images/"
-    ), 
-    blank=True, null=True,
+    upload_to="menu_images/",
+    blank=True,
+    null=True,
     verbose_name="Dish Image"
     )
 
