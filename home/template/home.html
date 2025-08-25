@@ -176,8 +176,11 @@
            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
          .menu-item h3 {
-           margin-bottom: 8px;
+           margin: 8px 0;
            color: #333;
+           font-size: 1.2rem;
+           font-weight: bold;
+        
         }
          .price {
            color: #ff3e7f;
@@ -291,6 +294,11 @@
         {% if menu_items %}
         {% for item in menu_items %}
     <div class="menu-item">
+        <!-- Dish Image -->
+        {% if item.image %}
+        <img src="{% static 'images/menu/defailt.jpg' %}" lt="NO Image" class="menu-img">
+        {% else %}
+        <!-- Dish Details-->
         <h3> {{ item.name }}</h3>
         <p> {{ item.description }}</p>
         <p class="price">₹ {{ item.price }}</p>
