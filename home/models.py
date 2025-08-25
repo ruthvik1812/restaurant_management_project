@@ -48,18 +48,36 @@ class Restaurant(models.Model):
 
 # Menu Model
 class Menu(models.Model):
-    restaurant = models.foreignKey(
-        Restaurant,
+    restaurant = models.ForeignKey(
+        'Restaurant',
         on_delete=models.CASCADE,
-        related_name="menu-item",
+        related_name="menu-items",
         verbose_name="Restaurant"
     )   
-    name = models.CharField(max_length=100, verbose_name="dish Name")
-    description = models.TextField(blank=True, null=True, verbose_name="Description)")
-    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Price")
-    image = models.ImageField(upload_to="menu_images/"), blank=True, null=True, verbose_name="Dish Image")
+    name = models.CharField(
+        max_length=100,
+        verbose_name="dish Name"
+    )
 
-    created_at = models.DataTimeField(auto_now_add=True)
+    description = models.TextField(
+    blank=True, null=True,
+    verbose_name="Description"
+    )
+    price = models.DecimalField(
+    max_digits=6,
+    decimal_places=2,
+    verbose_name="Price"
+    )
+    image = models.ImageField(
+    upload_to="menu_images/"
+    ), 
+    blank=True, null=True,
+    verbose_name="Dish Image"
+    )
+
+    created_at = models.DataTimeField(
+        auto_now_add=True
+    )
 
     class Meta:
         verbose_name = "Menu Item"
