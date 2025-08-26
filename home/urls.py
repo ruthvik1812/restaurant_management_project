@@ -3,11 +3,11 @@ from . import views.
 
 urlpatterns = [
     path('',views.home,name ="home"),
-    path("contact/",views.contact,name="contact"),
-    path("feedback/",views.submit_feedback, name="feedback"),
-    path("staff/login/",staff_login, name="staff-login"),
-    path("reservation/",view.reservations ,name="reservation"),
-    path("menu/",views.menu_list, name="menu"),
+    path("contact/",views.contact,name="home"),
+    path("feedback/",views.submit_feedback, name="home"),
+    path("staff/login/",staff_login, name="home"),
+    path("reservation/",view.reservations ,name="home"),
+    path("menu/",views.menu_list, name="home"),
 ]
 
 if settings.DEBUG:
