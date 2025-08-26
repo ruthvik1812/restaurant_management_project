@@ -4,31 +4,31 @@ from django.db import models
 class Restaurant(models.Model):
     name = models.CharField(
         max_length=255,
-        verbose_name="RR Restaurant"
+        verbose_name="Restaurant Name"
     )
     
     owner_name = models.CharField(
         max_length=255,
-        verbose_name="Ruthvik Raj Chintala"
+        verbose_name="Owner Name"
     )
     
     email = models.EmailField(
         unique=True,
-        verbose_name="ruthvikraj.chintala1812@gmail.com"
+        verbose_name="Email"
     )
     
     phone_number = models.CharField(
         max_length=15,
-        verbose_name="8639139326"
+        verbose_name="Phone Number"
     )
     
     address = models.TextField(
-        verbose_name=" # 17-3,Ambedkar street, huzurabad,karimnagar district"
+        verbose_name="Complete Address"
     )
     
     city = models.CharField(
         max_length=100,
-        verbose_name="karimnagar"
+        verbose_name="City"
     )
     
     created_at = models.DateTimeField(
@@ -47,11 +47,11 @@ class Meta:
     return f"{self.name} - {self.city}"
 
 # Menu Model
-class Menu(models.Model):
+class MenuItem(models.Model):
     restaurant = models.ForeignKey(
         'Restaurant',
         on_delete=models.CASCADE,
-        related_name="menu-items",
+        related_name="menu_items",
         verbose_name="Restaurant"
     )   
     name = models.CharField(
@@ -75,7 +75,7 @@ class Menu(models.Model):
     verbose_name="Dish Image"
     )
 
-    created_at = models.DataTimeField(
+    created_at = models.DateTimeField(
         auto_now_add=True
     )
 
@@ -90,7 +90,7 @@ class Menu(models.Model):
 class Contact(models.Model):
         name = models.CharField(max_length=100)
         email = models.EmailField()
-        created_at = models.DataTimeField(auto_now_add=True)
+        created_at = models.DateTimeField(auto_now_add=True)
         def __str__(self):
         return self.name
 class RestaurantLocation(models.Model):
