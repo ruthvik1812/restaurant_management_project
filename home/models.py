@@ -38,13 +38,13 @@ class Restaurant(models.Model):
 
 
 
-    class Meta:
+class Meta:
         verbose_name = "Restaurant"
         verbose_name_plural = "Restaurants"
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.name} - {self.city}"
+    return f"{self.name} - {self.city}"
 
 # Menu Model
 class Menu(models.Model):
@@ -87,12 +87,12 @@ class Menu(models.Model):
     def __str__(self):
         return f"{self.name} - ₹{self.price}"
     
-    class Contact(models.Model):
+class Contact(models.Model):
         name = models.CharField(max_length=100)
         email = models.EmailField()
         created_at = models.DataTimeField(auto_now_add=True)
         def __str__(self):
-            return self.name
+        return self.name
 class RestaurantLocation(models.Model):
     name = models.CharField(max_length=200, default= "RR Restaurant")
     address = models.CharField(max_length=255)
@@ -102,4 +102,4 @@ class RestaurantLocation(models.Model):
     phone = models.CharField(max_length=200, default="+91 8639139326")
         
         def __str__(self):
-            return f"{self.name} - {self.city}, {self.state}"
+        return f"{self.name} - {self.city}, {self.state}"
