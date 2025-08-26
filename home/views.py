@@ -14,7 +14,7 @@ def home(request):
     # Handle search functionality
     query = request.GET.get("q", "")
     if query:
-        menu_items = Mention.objects.filter(name_icontains=query)
+        menu_items = MenuItem.objects.filter(name_icontains=query)
     else:
         menu_items = MenuItem.objects.all()
    
@@ -53,7 +53,7 @@ def submit_feedback(request):
     return render(request, "feedback_home.html")
 
 
-#  Staff login ApI
+# =========Staff login ApI================== #
 @api_view(['POST'])
 def staff_login(request):
     try:
@@ -84,7 +84,7 @@ def get_menu(request):
         menu.append({
             "name": item.name,
             "description": item.description,
-            "price": str(item.price)
+            "price": str(item.price),
             "image":item.image.url if item.image else None
         })
     return Response({"menu": menu})
