@@ -264,9 +264,9 @@
         <p>Contact Us at: {{ phone_number }}</p>
     </header>
     <!-- Contact US Form-->
-<section style="background-color:#f8f8f8; padding: 20px; margin-top:30px">
-<h2> Contact US</h2>
-<form method ="POST">
+<section style="background-color:#f8f8f8; padding: 30px; margin-top:30px; text-align:center;">
+<h2 style="color:#ff6347;">📩 Contact US</h2>
+<form method ="POST" style="max-width:500; margin:20px auto; background:#fff; padding:20px; border=radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
