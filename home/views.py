@@ -34,7 +34,7 @@ def home(request):
     "restaurant_name": settings.RESTAURANT_NAME,
     "phone_number": settings.RESTAURANT_PHONE,
     "menu_items": menu_items,
-    "forms": form,
+    "form": form,
     "location": location,
     "opening_hours":restaurant.opening_hours if restaurant else {},
     "query": query,
