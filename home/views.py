@@ -36,6 +36,7 @@ def home(request):
     "menu_items": menu_items,
     "forms": form,
     "location": location,
+    "opening_hours":restaurant.opening_hours if restaurant else {},
     "query": query,
     })
 
