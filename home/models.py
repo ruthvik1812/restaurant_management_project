@@ -30,14 +30,16 @@ class Restaurant(models.Model):
         max_length=100,
         verbose_name="City"
     )
-    
-    created_at = models.DateTimeField(
+    opening_hours = models.JSONField(
+        default=dict,
+        verbose_name="Opening Hours",
+        help_text="store opening hours in JSON format, eg. {'Mon-Fri': '10:000 AM  - 11:00 PM','Sat-Sun': '9:00 AM - 11:00PM'}"
+    )
+     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Registered On"
     )
-
-
-
+   
 class Meta:
         verbose_name = "Restaurant"
         verbose_name_plural = "Restaurants"
