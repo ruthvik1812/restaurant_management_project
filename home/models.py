@@ -33,7 +33,7 @@ class Restaurant(models.Model):
     opening_hours = models.JSONField(
         default=dict,
         verbose_name="Opening Hours",
-        help_text="store opening hours in JSON format, eg. {'Mon-Fri': '10:000 AM  - 11:00 PM','Sat-Sun': '9:00 AM - 11:00PM'}"
+        help_text="store opening hours in JSON format, eg. {'Mon-Fri': '10:00AM  - 11:00PM','Sat-Sun': '9:00 AM - 11:00PM'}"
     )
      created_at = models.DateTimeField(
         auto_now_add=True,
