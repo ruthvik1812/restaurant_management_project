@@ -1,20 +1,23 @@
 from django.shortcuts import render
 from django.conf import settings
-from .forms import FeedbackForm
 from .models import Feedback, Staff
 from django.contrib.auth.hashers import check_password
-
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .forms import ContactForm
+from .forms import ContactForm, FeedbackForm
+from .models import Feedback, Staff, MenuItem, RestaurantLocation
 # Create your views here.
 
-#Home page
+#==========Home page View==========#
 def home(request):
-   menu_items = MenuItem.objects.all()
-    
+    # Handle search functionality
+    query = request.GET.get("q", "")
+    if query:
+        menu_items = Mention.objects.filter(name_icontains=query)
+    else:
+        menu_items = MenuItem.objects.all()
+   
     # Contact form Logic
     if request.method == "POST":
         form = ContactForm(request.POST)
@@ -33,16 +36,17 @@ def home(request):
     "menu_items": menu_items,
     "forms": form,
     "location": location,
+    "query": query,
     })
 
 # reservation page
-def reservarions(request):
+def reservations(request):
     return render(request,"reservation.html")
 
 
 def submit_feedback(request):
     if request.method =="POST":
-        comment = request.POST.grt("comment")
+        comment = request.POST.get("comment")
         Feedback.objects.create(comment=comment)
         return render(request, "feedback_home.html",{"success":"Thank you for your feedback!"})
 
@@ -66,8 +70,8 @@ def staff_login(request):
             if staff and check_password(password,staff.password):
                 return Response({'message':'Login successful'}, status=status.HTTP_200_OK)
             else:
-                return Responce({'error':'Invalid credintials'}, status=status.HTTP_401_UNAUTHORIZED)
-        except Execption as e:
+                return Respone({'error':'Invalid credintials'}, status=status.HTTP_401_UNAUTHORIZED)
+        except Exception as e:
             return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # =============== MENU API ==============#
@@ -79,8 +83,9 @@ def get_menu(request):
     for item in menu_items:
         menu.append({
             "name": item.name,
-            "description": ite.description,
-            "price": item.image.url if item.image else None
+            "description": item.description,
+            "price": str(item.price)
+            "image":item.image.url if item.image else None
         })
     return Response({"menu": menu})
  # Dedicated Menu Page View
