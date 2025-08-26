@@ -110,14 +110,13 @@
 
         /* ==================SEARCH_BAR ===============*/
         .search-bar {
-        
            margin: 30px auto;
            text-align: center;
         }
         .search-bar input[type="text"] {
            padding: 12px 15px;
            width: 300px;
-           border: none;
+           border: 1px solid #ddd;
            border-radius: 8px;
            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
            font-size: 1rem;
@@ -283,7 +282,7 @@
  <!-- SEARCH BAR -->
  <section class="search-bar">
     <form method="get" action="">
-        <input type="text" name="q" placeholder="Search for menu items..." value="{{ request.GET.q }}">
+        <input type="text" name="q" placeholder="Search for menu items..." value="{{ query }}">
         <button type="submit">Search</button>
     </form>
  </section>
@@ -307,7 +306,7 @@
     </div>
     {% endfor %}
     {% else %}
-    <p> No menu items available right now.</p>
+    <p style="color:red; font-weight:bold;">No menu items found for "{{ query}}"</p>
     {% endif %}
     </div>
  </section>
