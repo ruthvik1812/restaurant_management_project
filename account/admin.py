@@ -7,6 +7,6 @@ class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ("name","email","phone_number")
 
 @admin.register(RestaurantLocation)
-Class RestaurantLocationAdmin(admin.ModelAdmin):
-    list_display=("name", "address","city","state", "zip_code", "phone")
-    search_fields =("name", "city", "state", "phone")
+class RestaurantLocationAdmin(admin.ModelAdmin):
+    list_display = ("name", "address","city","state", "zip_code", "phone")
+    search_fields = ("name", "city", "state", "phone")
