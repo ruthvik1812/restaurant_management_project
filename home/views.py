@@ -11,6 +11,8 @@ from .models import Feedback, Staff, MenuItem, RestaurantLocation
 
 #==========Home page View==========#
 def home(request):
+    # Fetch restaurant details
+    restaurant = Restaurant.objects.first()
     # Handle search functionality
     query = request.GET.get("q", "")
     if query:
