@@ -25,9 +25,23 @@ def home(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+        # Email Notification
+        subject = f"New Contact Submission from {contact.name}"
+        message = f"Name: {contact.name}\nEmail: {contact.email}\n\nMessage:\{contact.message}"
+        try:
+            send_mail(
+                subject,
+                message,
+                settingss.DEFAULT_FROM_EMAIL,
+                [settings.RESTAURANT_EMAIL],
+                fail_silently=False
+            )
+            messages.sucess(request, "Thank you! Your message has been sent successfully.")
+        except BadHeaderError:
+            messages.error(request, "Invalid header found. Email not sent.")
+
             return redirect('home')
-    else:
-        form = ContactForm()
+   
     # fetch restaurant Location dynamically
     location = RestaurantLocation.objects.first()
     
@@ -42,7 +56,7 @@ def home(request):
     "query": query,
     })
 
-# reservation page
+#=== reservation page ====#
 def reservations(request):
     return render(request,"reservation.html")
 
@@ -76,6 +90,17 @@ def staff_login(request):
                 return Respone({'error':'Invalid credintials'}, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
             return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# ===== FEEDBACK SUBMISSION ======#
+def submit_feedback(request):
+    if request.method =="POST":
+        comment = request.POST.get("comment")
+        if comment.strip():
+            Feedback.objects.create(comment=coment)
+            return render(request, "feedback_home.html", {"success: Thank you for your Feedback!"})
+        else:
+            return render(request, "feedback_home.html",{"error feedback caanot be empty!"})
+    return render(request, "feedback_home.html")
 
 # =============== MENU API ==============#
 @api_view(['GET'])
