@@ -4,17 +4,17 @@ from django.db import models
 class Restaurant(models.Model):
     name = models.CharField(
         max_length=255,
-        verbose_name="Restaurant Name"
+        verbose_name="RR Restaurant"
     )
     
     owner_name = models.CharField(
         max_length=255,
-        verbose_name="Owner Name"
+        verbose_name="Ruthvik Raj Chintala"
     )
     
     email = models.EmailField(
         unique=True,
-        verbose_name="Email"
+        verbose_name="ruthvikraj.chintala1812@gmail.com"
     )
     
     phone_number = models.CharField(
