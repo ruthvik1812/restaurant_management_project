@@ -25,7 +25,16 @@ def home(request):
         "query": query,
         "cart_count": cart_count,
     })
-
+#========== About Page View ==========#
+def about(request):
+    context = {
+        "restaurant_name": "RR Restaurant",
+        "history": "Founded in 2010, RR Restaurant has been serving delicious dishes crafted with passion and love. Over the years, we’ve grown from a small family-owned eatery to one of the most loved dining spots in town.",
+        "mission": "To bring joy to every customer by serving fresh, high-quality, and tasty food while providing exceptional customer service.",
+        "vision": "To be the most trusted and loved restaurant brand, creating unforgettable dining experiences for everyone.",
+        "values": ["Fresh Ingredients", "Customer Satisfaction", "Quality Service", "Sustainability"],
+    }
+    return render(request, "home.html", context)
     #========== Add to Cart View ============#
 
     def add_to_cart(request, item_id):
@@ -144,4 +153,5 @@ def get_menu(request):
  def menu_page(request):
     menu_items = MenuItem.objects.all()
     
+
     return render(request, "menu_list.html", {"menu_items": menu_items})
