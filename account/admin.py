@@ -10,3 +10,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 class RestaurantLocationAdmin(admin.ModelAdmin):
     list_display = ("name", "address","city","state", "zip_code", "phone")
     search_fields = ("name", "city", "state", "phone")
+    
