@@ -258,8 +258,11 @@
 <body>
     <header>
         <!--logo prominently displayed-->
+        {% if restaurant.logo %}
+        <img src="{{ restaurant.logo.url }}" alt="{{restaurant.name }}" class="logo">
+        {% else %}
         <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
-    
+        {% endif %}
         <h1>Welcome to Our Restaurant</h1>
         <p style ="font-size:18px; color:#ff6347; margin-top:8px;"> 📞 Contact Us: {{ phone_number }}</p>
     </header>
