@@ -35,6 +35,13 @@ class Restaurant(models.Model):
         verbose_name="Opening Hours",
         help_text="store opening hours in JSON format, eg. {'Mon-Fri': '10:00AM  - 11:00PM','Sat-Sun': '9:00 AM - 11:00PM'}"
     )
+
+    logo = models.ImageField(
+        upload_to="restaurant_logos/",
+        blank=True,
+        null=True,
+        verbose_name="Restaurant Logo"
+    )
      created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Registered On"
