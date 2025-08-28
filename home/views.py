@@ -16,9 +16,14 @@ def home(request):
     # Handle search functionality
     query = request.GET.get("q", "")
     if query:
-        menu_items = MenuItem.objects.filter(name_icontains=query)
+        menu_items = MenuItem.objects.filter(name__icontains=query)
     else:
         menu_items = MenuItem.objects.all()
+    return render(request, "home.html",{
+        "restaurant": restaurant,
+        "menu_items": menu_items,
+        "query": query,
+    })
    
     # Contact form Logic
     if request.method == "POST":
