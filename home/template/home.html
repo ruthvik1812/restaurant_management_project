@@ -186,6 +186,28 @@
            font-weight: bold;
            font-size: 1.1rem;
         }
+        /* ADD TO CART BUTTON */
+        .add-to-cart-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff6347, #ff3e7f);
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.95;
+        transition: all 0.3s eas-in-out;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .add-to-cart-btn:hover {
+        background: linear-gradient(135deg, #ff3e7, #ff6347);
+        transform: scale(1.05);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .add-to-cart-btn:active {
+        transform: scale(0.95);
+        }
         
          /* =============FEEDBACK SECTION ==================*/
         .feedback-section {
@@ -248,8 +270,8 @@
         flex-direction: column;
         align-items: center;
         }
-        .search-bar input[type="text"] {
-        width: 220px;
+        .menu-card {
+        width: 100px;
         }
      }
 
@@ -265,7 +287,14 @@
         {% endif %}
         <h1>Welcome to Our Restaurant</h1>
         <p style ="font-size:18px; color:#ff6347; margin-top:8px;"> 📞 Contact Us: {{ phone_number }}</p>
+    <!-- CART ICON------->
+    <div style="margin-top:10px;">
+        <a href="#" style="background:#222; color: white; padding:8px 15px; border-radius:6px;; text-decoration: none; font-weight: bold;">
+            🛒 Cart ({{ cart_count }})
+        </a>
+    </div>
     </header>
+    
     <!-- Contact US Form-->
 <section style="background-color:#f8f8f8; padding: 30px; margin-top:30px; text-align:center;">
 <h2 style="color:#ff6347;">📩 Contact US</h2>
@@ -338,7 +367,11 @@
         <h3> {{ item.name }}</h3>
         <p> {{ item.description }}</p>
         <p class="price">₹ {{ item.price }}</p>
-    
+        <!--  Add to Cart Button -->
+        <a href="{% url 'add_to_cart' item.id %}"
+            style="display:inline-block; background:#ff6347; color:white; padding: 8px 15px; border-radius:5px; margin-top:8px; text-decoration:none; font-weight:bold;">
+            ➕ Add to cart
+        </a>  
     </div>
     {% endfor %}
     {% else %}
