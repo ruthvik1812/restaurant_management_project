@@ -23,8 +23,26 @@ def home(request):
         "restaurant": restaurant,
         "menu_items": menu_items,
         "query": query,
+        "cart_count": cart_count,
     })
-   
+
+    #========== Add to Cart View ============#
+
+    def add_to_cart(request, item_id):
+        menu_item = MenuItem.objects.get(id=item_id)
+
+        # Get cart from session or create a new one
+        cart = request.session.get("cart", {})
+
+        # Add or update  item quantity
+        if str(item_id) in cart:
+            cart[str(item_id)] +=1
+        else:
+            cart[str(item_id)] = 1
+        # Save updated cart to session
+        request.session["cart"] = cart
+        request.session.modified = True
+        return redirect("home")
     # Contact form Logic
     if request.method == "POST":
         form = ContactForm(request.POST)
