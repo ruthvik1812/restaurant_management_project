@@ -8,6 +8,7 @@ urlpatterns = [
     path("staff/login/",staff_login, name="home"),
     path("reservation/",view.reservations ,name="home"),
     path("menu/",views.menu_list, name="home"),
+    path("add-to-cart/<int:item_id>/", views.add_to_cart, name="add_to_cart"),
 ]
 
 if settings.DEBUG:
