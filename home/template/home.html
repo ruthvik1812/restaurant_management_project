@@ -49,9 +49,37 @@
             margin-bottom: 5px;
           
         }
+        
+        .phone {
+            display: inline-block;
+            margin-top: 8px;
+            background: white;
+            color: #ff3e7f;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: 0.3s
+            };
+        .phone:hover {
+            background: #ffe37f;
+            color: white;
+        }
+        /* =========== TAGLINE ==============*/
 
-        
-        
+        .tagline {
+            text-align: center;
+            margin: 15px auto;
+            padding: 12px 20px;
+            background-color: #fff8f8;
+            border: 1px solid #ffc8c8;
+            color: #e63946;
+            font-size: 18px;
+            font-weight: 10px;
+            width: 70%;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            }        
         /* =============== HERO SECTION ==============*/
         .hero {
            position: relative;
@@ -286,14 +314,12 @@
         {% else %}
         <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
         {% endif %}
-        <h1>Welcome to Our Restaurant</h1>
-        <p style ="font-size:18px; color:#ff6347; margin-top:8px;"> 📞 Contact Us: {{ phone_number }}</p>
-    <!-- CART ICON------->
-    <div style="margin-top:10px;">
-        <a href="tel:{{ restaurant.name }}" class="phone">📞{{ restaurant.phone }}</a>
-        <a href="#" style="background:#222; color: black; padding:8px 15px; border-radius:6px;; text-decoration: none; font-weight: bold;">
-            🛒 Cart ({{ cart_count }})
-        </a>
+        <h1>{{ restaurant.name }}</h1>
+        <p href="tel:{{ restaurant.phone }}" class="phone"> 📞 Contact Us: {{ phone_number }}</p>
+    
+    <!-- Welcome Tagline------->
+    <div style="tagline">
+        🍽️ Welcome to <strong> {{ restaurant.name }}</strong> - Where Taste Meets Happiness! ❤️
     </div>
     </header>
     
