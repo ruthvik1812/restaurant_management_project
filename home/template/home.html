@@ -28,7 +28,7 @@
          /* ========= HEADER =============*/
         header {
             background: linear-gradient(135deg, #ff6347, #ff3e7f);
-            padding: 25px 10px;
+            padding: 25px;
             text-align: center;
             color: white;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
@@ -280,6 +280,7 @@
 <body>
     <header>
         <!--logo prominently displayed-->
+        <div style="display: flex; align-items: center;">
         {% if restaurant.logo %}
         <img src="{{ restaurant.logo.url }}" alt="{{restaurant.name }}" class="logo">
         {% else %}
@@ -289,7 +290,8 @@
         <p style ="font-size:18px; color:#ff6347; margin-top:8px;"> 📞 Contact Us: {{ phone_number }}</p>
     <!-- CART ICON------->
     <div style="margin-top:10px;">
-        <a href="#" style="background:#222; color: white; padding:8px 15px; border-radius:6px;; text-decoration: none; font-weight: bold;">
+        <a href="tel:{{ restaurant.name }}" class="phone">📞{{ restaurant.phone }}</a>
+        <a href="#" style="background:#222; color: black; padding:8px 15px; border-radius:6px;; text-decoration: none; font-weight: bold;">
             🛒 Cart ({{ cart_count }})
         </a>
     </div>
@@ -427,4 +429,3 @@
     </footer>
 </body>
 </html>
-
