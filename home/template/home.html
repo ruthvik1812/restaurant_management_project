@@ -80,6 +80,35 @@
             width: 70%;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
             }        
+        
+        /* ================= BREADCRUMBS ============*/
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            padding: 10px 25px;
+            margin: 0 auto 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .breadcrumbs a { 
+            color: #ff3e7f;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+        .breadcrumbs a:hover {
+            color: #e63946;
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: #777;
+        }
         /* =============== HERO SECTION ==============*/
         .hero {
            position: relative;
@@ -379,6 +408,23 @@
         <button type="submit">Search</button>
     </form>
  </section>
+ <!--======= BREADCRUMBS =========-->
+ <nav class="breadcrumbs">
+    <a href="{% url 'home' %}">Home</a>
+    {% if request.resolver_match.url_name == 'home' %}
+    <span></span>
+    <span>Menu</span>
+{% elif request.resolver_match.url_name == 'contact' %}
+    <span>-></span>
+    <span>Contact</span>
+{% elif request.resolver_match.url_name 'about' %}
+    <span>-></span>
+<span>About US</span>
+{% elif request.resolver_match.url_name == 'cart' %}
+    <span>-></span>
+    <span>Your Cart</span>
+{% endif %}
+ </nav>
  <!-- MENU SECTION -->
  <section class="menu" id="menu">
     <h2> Our Menu</h2>
