@@ -12,13 +12,16 @@ from .models import Feedback, Staff, MenuItem, RestaurantLocation
 #==========Home page View==========#
 def home(request):
     # Fetch restaurant details
-    restaurant = Restaurant.objects.first()
+    restaurant = RestaurantLocation.objects.first()
     # Handle search functionality
     query = request.GET.get("q", "")
     if query:
         menu_items = MenuItem.objects.filter(name__icontains=query)
     else:
         menu_items = MenuItem.objects.all()
+    
+    cart_count = request.session.get("cart_count", 0)
+    
     return render(request, "home.html",{
         "restaurant": restaurant,
         "menu_items": menu_items,
