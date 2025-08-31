@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RR Restaurant</title>
@@ -19,7 +18,6 @@
             color: #222;
             line-height:1.6;
             scroll-behavior: smooth;
-         
         }
         a {
             text-decoration: none;
@@ -41,13 +39,11 @@
             display: block;
             margin: 0 auto 10px;
             filter: drop-shadow(0px 3px 6px rgba(0, 0, 0,0.4));
-
         }
 
         header h1 {
             font-size: 2.4rem;
             margin-bottom: 5px;
-          
         }
         
         .phone {
@@ -60,14 +56,13 @@
             font-weight: bold;
             font-size: 16px;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-            transition: 0.3s
-            };
+            transition: 0.3s;
+        }
         .phone:hover {
             background: #ffe37f;
             color: white;
         }
         /* =========== TAGLINE ==============*/
-
         .tagline {
             text-align: center;
             margin: 15px auto;
@@ -76,10 +71,10 @@
             border: 1px solid #ffc8c8;
             color: #e63946;
             font-size: 18px;
-            font-weight: 10px;
+            font-weight: bold;
             width: 70%;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-            }        
+        }        
         
         /* ================= BREADCRUMBS ============*/
         .breadcrumbs {
@@ -112,11 +107,10 @@
         /* =============== HERO SECTION ==============*/
         .hero {
            position: relative;
-           background: url("{% static 'images/restaurant-hero.jpg' %}")center/cover no-repeat;
+           background: url("{% static 'images/restaurant-hero.jpg' %}") center/cover no-repeat;
            color: white;
            padding: 120px 20px;
            text-align: center;
-       
         }
 
         .hero::before {
@@ -130,19 +124,16 @@
            z-index: 0;
          }
 
-         .hero h2 , .hero p, .hero .btn {
+         .hero h2, .hero p, .hero .btn {
            position: relative;
            z-index: 1;
-
-        
          }
         
         .hero h2 {
            font-size: 2.8rem;
            font-weight: bold;
            margin-bottom: 15px;
-           animation: fadeup 1.2s ease-in-out;
-        
+           animation: fadeUp 1.2s ease-in-out;
         }
 
         .hero .btn {
@@ -155,14 +146,11 @@
            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
            transition: transform 0.3s ease, box-shadow 0.3s ease;
            z-index: 1;
-
         }
 
         .hero .btn:hover {
-         
            transform: translateY(-4px);
            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
-
         }
 
         /* ==================SEARCH_BAR ===============*/
@@ -179,7 +167,6 @@
            font-size: 1rem;
            outline: none;
            transition: all 0.3s ease;
-
         }
 
         .search-bar button {
@@ -203,7 +190,6 @@
            text-align: center;
          }
          .menu h2 {
-         
            font-size: 2.2rem;
            color: #ff6347;
            margin-bottom: 25px;
@@ -213,10 +199,8 @@
            flex-wrap: wrap;
            justify-content: center;
            gap: 20px;
-
-         
         }
-        .menu-item {
+        .menu-card {
            background: rgba(255, 255, 255, 0.8);
            backdrop-filter: blur(10px);
            border-radius: 12px;
@@ -225,18 +209,16 @@
            width: 250px;
            transition: all 0.3s ease;
            text-align: left;
-           
         }
-         .menu-item:hover {
+         .menu-card:hover {
            transform: translateY(-8px);
            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-         .menu-item h3 {
+         .menu-card h3 {
            margin: 8px 0;
            color: #333;
            font-size: 1.2rem;
            font-weight: bold;
-        
         }
          .price {
            color: #ff3e7f;
@@ -253,12 +235,12 @@
            margin-top: 10px;
            text-align: center;
            font-weight: bold;
-           font-size: 0.95;
-           transition: all 0.3s eas-in-out;
+           font-size: 0.95rem;
+           transition: all 0.3s ease-in-out;
            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
         .add-to-cart-btn:hover {
-           background: linear-gradient(135deg, #ff3e7, #ff6347);
+           background: linear-gradient(135deg, #ff3e7f, #ff6347);
            transform: scale(1.05);
            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
         }
@@ -274,7 +256,6 @@
            background: #fff;
            border-radius: 12px;
            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-
         }
         
         .faq-container h2 {
@@ -295,7 +276,6 @@
            color: #333;
            margin-bottom: 8px;
            font-size: 18px;
-
         }
 
         .faq p {
@@ -327,7 +307,7 @@
            cursor: pointer;
         }
         .feedback-section button:hover {
-           background: #e55533d;
+           background: #e5553d;
         }
          /* ===============FOOTER ====================*/
 
@@ -366,7 +346,7 @@
         align-items: center;
         }
         .menu-card {
-        width: 100px;
+        width: 100%;
         }
      }
 
@@ -379,135 +359,133 @@
         {% if restaurant.logo %}
         <img src="{{ restaurant.logo.url }}" alt="{{restaurant.name }}" class="logo">
         {% else %}
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="RR Restaurant official logo" class="logo">
         {% endif %}
         <h1>{{ restaurant.name }}</h1>
-        <p href="tel:{{ restaurant.phone }}" class="phone"> 📞 Contact Us: {{ phone_number }}</p>
-    
-    <!-- Welcome Tagline------->
-    <div style="tagline">
-        🍽️ Welcome to <strong> {{ restaurant.name }}</strong> - Where Taste Meets Happiness! ❤️
-    </div>
+        <a href="tel:{{ restaurant.phone }}" class="phone"> 📞 Contact Us: {{ phone_number }}</a>
+        </div>
+        <!-- Welcome Tagline------->
+        <div class="tagline">
+            🍽️ Welcome to <strong>{{ restaurant.name }}</strong> - Where Taste Meets Happiness! ❤️
+        </div>
     </header>
     <!-- ======== Current Date & Time Section =======-->
-    <section style="text-align: center; margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <section style="text-align: center; margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
         <h3 style="color: #333; font-weight: bold;">Current Date & Time</h3>
         <p style="font-size: 18px; color: #555;">
-            {% now "l,d F Y"} — {% now "h: i A" %}
+            {% now "l, d F Y" %} — {% now "h:i A" %}
         </p>
     </section>
     <!-- HERO -->
- <section class="hero">
-    <h2>Delicious food, made with love</h2>
-    <p>Fresh, tasty dishes crafted specially for you</p>
-    <a href="#menu" class="btn">View Menu</a>
- </section>
- <!-- SEARCH BAR -->
- <section class="search-bar">
-    <form method="get" action="">
-        <input type="text" name="q" placeholder="Search for menu items..." value="{{ query }}">
-        <button type="submit">Search</button>
-    </form>
- </section>
- <!--======= BREADCRUMBS =========-->
- <nav class="breadcrumbs">
-    <a href="{% url 'home' %}">Home</a>
-    {% if request.resolver_match.url_name == 'home' %}
-    <span></span>
-    <span>Menu</span>
-{% elif request.resolver_match.url_name == 'contact' %}
-    <span>-></span>
-    <span>Contact</span>
-{% elif request.resolver_match.url_name 'about' %}
-    <span>-></span>
-<span>About US</span>
-{% elif request.resolver_match.url_name == 'cart' %}
-    <span>-></span>
-    <span>Your Cart</span>
-{% endif %}
- </nav>
- <!-- MENU SECTION -->
- <section class="menu" id="menu">
-    <h2> Our Menu</h2>
-    <div class="menu-items">
-        {% if menu_items %}
-        {% for item in menu_items %}
-    <div class="menu-card">
-        {% if item.image %}
-        <img src="{% static 'images/menu/defailt.jpg' %}" alt="Image of {{ item.name }}" class="menu-img"> 
-        {% else %}
-        <image src -"{% static'images/menu/default.jpg' %}" alt="Default Dish Image" class="menu-img">
+    <section class="hero">
+        <h2>Delicious food, made with love</h2>
+        <p>Fresh, tasty dishes crafted specially for you</p>
+        <a href="#menu" class="btn">View Menu</a>
+    </section>
+    <!-- SEARCH BAR -->
+    <section class="search-bar">
+        <form method="get" action="">
+            <input type="text" name="q" placeholder="Search for menu items..." value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+    <!--======= BREADCRUMBS =========-->
+    <nav class="breadcrumbs">
+        <a href="{% url 'home' %}">Home</a>
+        {% if request.resolver_match.url_name == 'home' %}
+            <span></span>
+            <span>Menu</span>
+        {% elif request.resolver_match.url_name == 'contact' %}
+            <span>→</span>
+            <span>Contact</span>
+        {% elif request.resolver_match.url_name == 'about' %}
+            <span>→</span>
+            <span>About Us</span>
+        {% elif request.resolver_match.url_name == 'cart' %}
+            <span>→</span>
+            <span>Your Cart</span>
         {% endif %}
-        <!-- Dish Details-->
-        <h3> {{ item.name }}</h3>
-        <p> {{ item.description }}</p>
-        <p class="price">₹ {{ item.price }}</p>
-        <!--  Add to Cart Button -->
-        <a href="{% url 'add_to_cart' item.id %}"
-            style="display:inline-block; background:#ff6347; color:white; padding: 8px 15px; border-radius:5px; margin-top:8px; text-decoration:none; font-weight:bold;">
-            ➕ Add to cart
-        </a>  
+    </nav>
+    <!-- MENU SECTION -->
+    <section class="menu" id="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-items">
+            {% if menu_items %}
+                {% for item in menu_items %}
+                <div class="menu-card">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="Image of {{ item.name }}" class="menu-img">
+                    {% else %}
+                    <img src="{% static 'images/menu/default.jpg' %}" alt="Default Dish Image" class="menu-img">
+                    {% endif %}
+                    <!-- Dish Details-->
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                    <p class="price">₹ {{ item.price }}</p>
+                    <!--  Add to Cart Button -->
+                    <a href="{% url 'add_to_cart' item.id %}"
+                        class="add-to-cart-btn">
+                        ➕ Add to cart
+                    </a>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p style="color:red; font-weight:bold;">No menu items found for "{{ query }}"</p>
+            {% endif %}
+        </div>
+    </section>
+    <!--========== FAQ Section =======-->
+    <div class="faq-container" id="faqs">
+        <h2>Frequently Asked Questions</h2>
+        {% for faq in faqs %}
+        <div class="faq">
+            <h3>❓{{ faq.question }}</h3>
+            <p>💡{{ faq.answer }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    {% else %}
-    <p style="color:red; font-weight:bold;">No menu items found for "{{ query}}"</p>
-    {% endif %}
-    </div>
- </section>
- <!--========== FAQ Section =======-->
- <div class="faq-container" id="faqs">
-    <h2>Frequently Asked Questions</h2>
-    {% for faq in faqs %}
-    <div class="faq">
-        <h3>❓{{ faq.question }}</h3>
-        <p> 💡{{ faq.answer }}</p>
-</div>
-{% endfor %}
- </div>
-
- <!-- FEEDBACK SECTION-->
- <section class="feedback-section">
-    {% if success %}
-    <p style="color:green; font-weight:bold;">{{ success }}</p>
-    {% endif %}
-    <h2>Leave Your Feedback</h2>
-    <form method="post" action="{% url 'submit_feedback' %}">
-        {% csrf_token %}
-        <label for="comment" style="font-weight:bold;">Your Feedback:</label>
-        <br>
-        <textarea id="comment" name="comment" placeholder="write your feedback...." rows="4"  required></textarea>
-         <br><br>
-        <button type="submit" style="background:#ff6347; color:#fff; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
-            Submit
-        </button>
-    </form>
- </section>
- <!-- Google Map Section -->
- <section style="padding: 40px; background-color: #fefefe;text-align: center; border-top: 2px solid #eee; margin-top: 30px;">
-     <h2 style="color: #ff6347; font-size:28px; margin-bottom: 15px;"> 📍 Our Location </h2>
-     <p style="font-size: 16px; color: #444; margin-bottom: 20px; line-height: 1.6;">
-        <strong>{{ location.name }}</strong><br>
-        {{ location.address }}, {{ location.city }}, {{location.state }} - {{ location .zip_code }}<br>
-
-        phone: {{ location.phone }}
-     </p>
-     {% else %}
-     <p style="color:red;">Location details not available.</p>
-     {% endif %}
-     
-     <div style="max-width: 900px; margin: 0 auto;">
-        <iframe
-            src="https://www.Google.com/maps/embed?pb=YOUR_VALID_EMBED_URL"
-            width="100%" height="350" style="border:0; border:0; border-radius:10px;"
-            allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-     </div>
- </section>
- <!-- Footer Section-->
+    <!-- FEEDBACK SECTION-->
+    <section class="feedback-section">
+        {% if success %}
+        <p style="color:green; font-weight:bold;">{{ success }}</p>
+        {% endif %}
+        <h2>Leave Your Feedback</h2>
+        <form method="post" action="{% url 'submit_feedback' %}">
+            {% csrf_token %}
+            <label for="comment" style="font-weight:bold;">Your Feedback:</label>
+            <br>
+            <textarea id="comment" name="comment" placeholder="Write your feedback..." rows="4" required></textarea>
+            <br><br>
+            <button type="submit" style="background:#ff6347; color:#fff; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
+                Submit
+            </button>
+        </form>
+    </section>
+    <!-- Google Map Section -->
+    <section style="padding: 40px; background-color: #fefefe; text-align: center; border-top: 2px solid #eee; margin-top: 30px;">
+        <h2 style="color: #ff6347; font-size:28px; margin-bottom: 15px;"> 📍 Our Location </h2>
+        {% if location %}
+        <p style="font-size: 16px; color: #444; margin-bottom: 20px; line-height: 1.6;">
+            <strong>{{ location.name }}</strong><br>
+            {{ location.address }}, {{ location.city }}, {{ location.state }} - {{ location.zip_code }}<br>
+            Phone: {{ location.phone }}
+        </p>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=YOUR_VALID_EMBED_URL"
+                width="100%" height="350" style="border:0; border-radius:10px;"
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        {% else %}
+        <p style="color:red;">Location details not available.</p>
+        {% endif %}
+    </section>
+    <!-- Footer Section-->
     <footer>
         <p><strong>Opening Hours</strong></p>
-        <p>Mon-Fri: 11am - 11am</p>
+        <p>Mon-Fri: 11am - 11pm</p>
         <p>Sat-Sun: 10am - 11pm</p>
         <p>&copy; 2025 RR Restaurant. All rights reserved.</p>
     </footer>
