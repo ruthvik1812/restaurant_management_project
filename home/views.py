@@ -21,6 +21,8 @@ def home(request):
         menu_items = MenuItem.objects.all()
     
     cart_count = request.session.get("cart_count", 0)
+    
+    current _date = timezone.now()
 
     faqs=[
         {"question":"What are your opening hours?","answer":"We are opening daily from 10:00Am to 11:00pm."},
@@ -34,7 +36,8 @@ def home(request):
         "menu_items": menu_items,
         "query": query,
         "cart_count": cart_count,
-        "faqs": faqs
+        "faqs": faqs,
+        "current_datetime": current_datetime,
     })
 #======= About Page View ============#
 def about(request):
