@@ -21,12 +21,20 @@ def home(request):
         menu_items = MenuItem.objects.all()
     
     cart_count = request.session.get("cart_count", 0)
+
+    faqs=[
+        {"question":"What are your opening hours?","answer":"We are opening daily from 10:00Am to 11:00pm."},
+        {"question":"Do you offer home delivery?","answer":"Yes, we provide free home delivery within 5 km."},
+        {"question":"Can I table online?","answer":"Ansolutely! Use our 'Book a Table' feature on the homepage."},
+    ]
+    
     
     return render(request, "home.html",{
         "restaurant": restaurant,
         "menu_items": menu_items,
         "query": query,
         "cart_count": cart_count,
+        "faqs": faqs
     })
 #======= About Page View ============#
 def about(request):
