@@ -1,19 +1,31 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenicate, login, logout
 from django.conf import settings
-from django.utlis import timezone
+from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
-from .models import Feedback, Staff
+from .models import Feedback, Staff, MenuItem, RestaurantLocation
 from django.contrib.auth.hashers import check_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .forms import ContactForm, FeedbackForm
-from .models import Feedback, Staff, MenuItem, RestaurantLocation
 # Create your views here.
 
 #==========Home page View==========#
 def home(request):
+    # Hamdle login form submission
+    if request.method == "POST" and "login" in request.POST:(
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenicate(request, username=username, password=password)
+    if user:
+        login(request, user)
+        messages.success(request, "Login successful!")
+        return redirect("home")
+    else:
+        messages.error(request, "Invalid username or password.")
+
     # Fetch restaurant details
     restaurant = RestaurantLocation.objects.first()
     # Handle search functionality
@@ -25,7 +37,7 @@ def home(request):
     
     cart_count = request.session.get("cart_count", 0)
     
-    current _date = timezone.now()
+    current_date = timezone.now()
 
     faqs=[
         {"question":"What are your opening hours?","answer":"We are opening daily from 10:00Am to 11:00pm."},
