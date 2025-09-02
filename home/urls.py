@@ -10,6 +10,7 @@ urlpatterns = [
     path("menu/",views.menu_list, name="home"),
     path("add-to-cart/<int:item_id>/", views.add_to_cart, name="add_to_cart"),
     path("faq/",views.faq_view, name="home"),
+    path('order/', views.order_page,name='order')
 ]
 
 if settings.DEBUG:
