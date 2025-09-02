@@ -1,101 +1,182 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.utils import timezone
+from django.utlis import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
+from .models import Feedback, Staff
+from django.contrib.auth.hashers import check_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Feedback, Staff, MenuItem, RestaurantLocation
 from .forms import ContactForm, FeedbackForm
+from .models import Feedback, Staff, MenuItem, RestaurantLocation
+# Create your views here.
 
-
-# ====== Home Page View ====== #
+#==========Home page View==========#
 def home(request):
+    # Fetch restaurant details
     restaurant = RestaurantLocation.objects.first()
+    # Handle search functionality
     query = request.GET.get("q", "")
-    menu_items = MenuItem.objects.filter(name__icontains=query) if query else MenuItem.objects.all()
-
+    if query:
+        menu_items = MenuItem.objects.filter(name__icontains=query)
+    else:
+        menu_items = MenuItem.objects.all()
+    
     cart_count = request.session.get("cart_count", 0)
+    
+    current _date = timezone.now()
 
-    faqs = [
-        {"question": "What are your opening hours?", "answer": "We are open daily from 10:00 AM to 11:00 PM."},
-        {"question": "Do you offer home delivery?", "answer": "Yes, we provide free home delivery within 5 km."},
-        {"question": "Can I book a table online?", "answer": "Absolutely! Use our 'Book a Table' feature on the homepage."},
+    faqs=[
+        {"question":"What are your opening hours?","answer":"We are opening daily from 10:00Am to 11:00pm."},
+        {"question":"Do you offer home delivery?","answer":"Yes, we provide free home delivery within 5 km."},
+        {"question":"Can I table online?","answer":"Ansolutely! Use our 'Book a Table' feature on the homepage."},
     ]
-
-    return render(request, "home.html", {
+    
+    
+    return render(request, "home.html",{
         "restaurant": restaurant,
         "menu_items": menu_items,
         "query": query,
         "cart_count": cart_count,
         "faqs": faqs,
-        "current_datetime": timezone.now(),
+        "current_datetime": current_datetime,
     })
+#======= About Page View ============#
+def about(request):
+    context = {
+        "restaurant_name": "RR Restaurant",
+        "history": "Founded in 2018, RR Restaurant haa been serving delicious dishes crafted with passion and love. Over the years,we've grown from a small family-owned eatery to one of the most loved dining spots in town.",
+        "mission": "To be the most trusted and loved restaurant brand, creating unforgettable dining experiences for everyone.",
+        "vision": "To be the most trusted and loved resataurant brand, creating unforgettable dining experiences service.",
+        "values":["Fresh Ingredients", "Customer Satisfaction", "Quality service", "Sustainability"],
+        }
+    return render(request, "home.html", context)
 
+    }
+    #========== Add to Cart View ============#
 
-# ====== Contact Page View ====== #
-def contact(request):
-    form = ContactForm()
-    if request.method == "POST":
-        form = ContactForm(request.POST)
+    def add_to_cart(request, item_id):
+        menu_item = MenuItem.objects.get(id=item_id)
+
+        # Get cart from session or create a new one
+        cart = request.session.get("cart", {})
+
+        # Add or update  item quantity
+        if str(item_id) in cart:
+            cart[str(item_id)] +=1
+        else:
+            cart[str(item_id)] = 1
+        # Save updated cart to session
+        request.session["cart"] = cart
+        request.session.modified = True
+        return redirect("home")
+    #===== Contact Form ==========#
+    def contact(requst):
+        form = ContactForm()
+        if request.method == "POST":
+           form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+        # Email Notification
+        subject = f"New Contact Submission from {contact.name}"
+        message = f"Name: {contact.name}\nEmail: {contact.email}\n\nMessage:\{contact.message}"
+        try:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.RESTAURANT_EMAIL],
+                fail_silently=False
+            )
             messages.success(request, "Thank you! Your message has been sent successfully.")
-            return redirect("contact")
-    return render(request, "home.html", {"form": form})
+        except BadHeaderError:
+            messages.error(request, "Invalid header found. Email not sent.")
 
+            return redirect('home')
+   
+    # fetch restaurant Location dynamically
+    location = RestaurantLocation.objects.first()
+    
 
-# ====== Menu Page ====== #
-def menu_list(request):
-    menu_items = MenuItem.objects.all()
-    return render(request, "home.html", {"menu_items": menu_items})
+    return render(request,'home.html', {
+    "restaurant_name": settings.RESTAURANT_NAME,
+    "phone_number": settings.RESTAURANT_PHONE,
+    "menu_items": menu_items,
+    "form": form,
+    "location": location,
+    "opening_hours":restaurant.opening_hours if restaurant else {},
+    "query": query,
+    })
 
-
-# ====== Add to Cart ====== #
-def add_to_cart(request, item_id):
-    menu_item = MenuItem.objects.get(id=item_id)
-    cart = request.session.get("cart", {})
-    cart[str(item_id)] = cart.get(str(item_id), 0) + 1
-    request.session["cart"] = cart
-    request.session.modified = True
-    return redirect("home")
-
-
-# ====== Reservation Page ====== #
+#=== reservation page ====#
 def reservations(request):
-    return render(request, "reservation.html")
+    return render(request,"reservation.html")
 
 
-# ====== Feedback Submission ====== #
 def submit_feedback(request):
-    if request.method == "POST":
+    if request.method =="POST":
         comment = request.POST.get("comment")
-        if comment.strip():
-            Feedback.objects.create(comment=comment)
-            return render(request, "feedback_home.html", {"success": "Thank you for your feedback!"})
-        return render(request, "feedback_home.html", {"error": "Feedback cannot be empty!"})
+        Feedback.objects.create(comment=comment)
+        return render(request, "feedback_home.html",{"success":"Thank you for your feedback!"})
+
     return render(request, "feedback_home.html")
 
 
-# ====== Staff Login API ====== #
+# =========Staff login ApI================== #
 @api_view(['POST'])
 def staff_login(request):
     try:
-        email = request.data.get("email")
-        password = request.data.get("password")
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+
         if not email or not password:
-            return Response({"error": "Email and password are required"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error':'Email and password are required'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+            staff = Staff.objects.filter(email=email).first()
+            if staff and check_password(password,staff.password):
+                return Response({'message':'Login successful'}, status=status.HTTP_200_OK)
+            else:
+                return Respone({'error':'Invalid credintials'}, status=status.HTTP_401_UNAUTHORIZED)
+        except Exception as e:
+            return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        staff = Staff.objects.filter(email=email).first()
-        if staff and check_password(password, staff.password):
-            return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
-        return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+# ===== FEEDBACK SUBMISSION ======#
+def submit_feedback(request):
+    if request.method =="POST":
+        comment = request.POST.get("comment")
+        if comment.strip():
+            Feedback.objects.create(comment=coment)
+            return render(request, "feedback_home.html", {"success: Thank you for your Feedback!"})
+        else:
+            return render(request, "feedback_home.html",{"error feedback caanot be empty!"})
+    return render(request, "feedback_home.html")
 
-    except Exception as e:
-        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+# =============== MENU API ==============#
+@api_view(['GET'])
+def get_menu(request):
+    menu_items = MenuItem.objects.all()
+
+    menu = []
+    for item in menu_items:
+        menu.append({
+            "name": item.name,
+            "description": item.description,
+            "price": str(item.price),
+            "image":item.image.url if item.image else None
+        })
+    return Response({"menu": menu})
+ # Dedicated Menu Page View
+
+ def menu_page(request):
+    menu_items = MenuItem.objects.all()
+    
+    return render(request, "menu_list.html", {"menu_items": menu_items})
+ # ===== Order Page ====== #
+ def order_page(request):
+    return render(request, "home.html")
 
 
-# ====== Order Page ====== #
-def order_page(request):
-    return render(request, "order.html")
