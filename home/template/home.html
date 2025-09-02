@@ -413,12 +413,12 @@
  <nav class="breadcrumbs">
     <a href="{% url 'home' %}">Home</a>
     {% if request.resolver_match.url_name == 'home' %}
-    <span></span>
+    <span>-></span>
     <span>Menu</span>
 {% elif request.resolver_match.url_name == 'contact' %}
     <span>-></span>
     <span>Contact</span>
-{% elif request.resolver_match.url_name 'about' %}
+{% elif request.resolver_match.url_name == 'about' %}
     <span>-></span>
 <span>About US</span>
 {% elif request.resolver_match.url_name == 'cart' %}
@@ -538,5 +538,48 @@
         <a href="#privacy-policy" style="color:#ff6347; text-decoration:none;">Privacy Policy</a>
         </p>
     </footer>
+
+<!--SCRIPT TO UPDATE BREADCRUMBS -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const breadcrumbCurrent = document.getElementById("breadcrumb-current");
+        const breadcrumbSeperator = document.getElementById("breadcrumb-separator");
+    
+        function updateBreadcrumb(section) {
+            if (section === "home") {
+                breadcrumbCurrentSeparator.style.display = "none";
+                breadcrumbCurrent.textContent ="";
+            } else {
+                breadcrumbSeperator.style.display = "inline";
+                breadcrumbCurrent.textContent = section..charAt(0).toUpperCase() + section.slice(1);
+            }
+}
+
+//UPDATE Breadcrumb when clicking nav links
+document.querySelectorAll("a[href^='#']").forEach(link => {
+    link.addEventListener("click", function (){
+          const section = this.getAttribute("href").substring(1);
+          updateBreadcrumb(section);
+    });
+});
+
+// Auto-update breadcrumb when scrolling
+window.addEventListener("scroll", function() {
+    const sections = ["home","menu","privacy-policy"];
+    for (let sec of sections) { 
+        const el =document.getElementById(Sec);
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+            updateBreadcrumb(sec);
+            break;
+        } 
+    }
+});
+
+});
+</script>
 </body>
 </html>
+        
+ 
+
