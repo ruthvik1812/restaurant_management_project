@@ -450,6 +450,32 @@
         <button type="submit">Search</button>
     </form>
  </section>
+ <!-- ====== LOGIN SECTION ======--->
+ <section style="max-width: 400px; margin: 40px auto; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #ff3e7f; margin-bottom: 15px;">Login</h2>
+        <form method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required
+                   style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+            <input type="password" name="password" placeholder="Password" required
+                   style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+            <button type="submit" name="login"
+                    style="background-color: #ff3e7f; color: white; padding: 10px; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s;">
+                           Login
+            </button>
+        </form>
+        <!-- ERROR & SUCCESS MESSAGES  -->
+        {% if messages %}
+        <div style="margin-top: 12px;">
+            {% for message in messages %}
+            <p style="color: {% if message.tags =='error' %}red{% else %}green{% endif %}; font-size: 14px; text-align: center;">
+                {{ message }}
+            </p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+ </section> 
+                 
  <!--  ORDER NOW SECTION -->
  <section class="order-section" id="order">
     <h2>🥗 Hungry? Order your Favourite Dishes</h2>
