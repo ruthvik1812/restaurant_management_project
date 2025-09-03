@@ -531,6 +531,16 @@
     {% endif %}
     </div>
  </section>
+ <!--=== Order confirmation section ===-->
+ {% if order_number %}
+ <div style="max-width:500px; margin:20px auto; bacckground: #fff; padding: 20px; text-align:center; border-radius:10px;; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <h2 style="color:#4CAF50;">✅ Order confirmed!</h2>
+    <p> Thank you for your purchase.</p>
+    <p>Your Order Number:</p>
+    <h3 style="color:#333;">#{{ order_number }}</h3>
+    <a href="/" style="display:inline-block; margin-top:15px; padding:10px 20px; background:#4CAF50;color:#fff;text-decoration:none;border-radius:5px;">Go to Homepage</a>
+ </div>
+ {% endif %}
  <!--========== FAQ Section =======-->
  <div class="faq-container" id="faqs">
     <h2>Frequently Asked Questions</h2>
