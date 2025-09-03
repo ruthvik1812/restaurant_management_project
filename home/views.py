@@ -45,6 +45,10 @@ def home(request):
         {"question":"Can I table online?","answer":"Ansolutely! Use our 'Book a Table' feature on the homepage."},
     ]
     
+    # Check for order confirmation
+    order_number = None
+    if request.GET.get("confirmed") == "true":
+        order_number = random.randit(1000, 9999)
     
     return render(request, "home.html",{
         "restaurant": restaurant,
@@ -53,8 +57,13 @@ def home(request):
         "cart_count": cart_count,
         "faqs": faqs,
         "current_datetime": current_datetime,
+        "order_number": order_number,
     })
-#======= About Page View ============#
+# ====== Order Page (Redirects to Home with confirmation)===== #
+def order_page(request):
+    return redirect("/?confirmed=true")
+    
+# ====== About Page View ============#
 def about(request):
     context = {
         "restaurant_name": "RR Restaurant",
