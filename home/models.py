@@ -112,3 +112,15 @@ class RestaurantLocation(models.Model):
         
         def __str__(self):
         return f"{self.name} - {self.city}, {self.state}"
+# ----------- FEEDBACK MODEL --------------------#
+ class Feedback(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Your Name")
+    comment = models.TextField(verbose_name="Your Feedback")
+    Submitted_at = models.DateTimeField(auto_now_add=True, verbose_name="Submitted On")
+
+    class Meta:
+        verbose_name = "Feedback"
+        verbose_name_plural = "Feedbacks"
+        ordering = ["-submitted_at"]
+    def __str__(self):
+        return f"{self.name} - {self.submitted_at.strftime(%Y-%m-%d %H:%M')}"
