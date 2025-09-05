@@ -19,7 +19,7 @@ def home(request):
     if query:
         menu_items = MenuItem.objects.filter(name_icontains=query)
     else:
-        menu_items = menuItem.objects.all()
+        menu_items = MenuItem.objects.all()
     # Get cart items from session
 
     cart = request.session.get("cart", {})
