@@ -9,12 +9,14 @@ class Restaurant(models.Model):
     
     owner_name = models.CharField(
         max_length=255,
-        verbose_name="Ruthvik Raj Chintala"
+        verbose_name="Owner Name"
+        default ="Ruthvik Raj chintala..000"
     )
     
     email = models.EmailField(
         unique=True,
-        verbose_name="ruthvikraj.chintala1812@gmail.com"
+        verbose_name="Email"
+        default="ruthvikraj.chintala1812@gmail.com"
     )
     
     phone_number = models.CharField(
@@ -116,7 +118,7 @@ class RestaurantLocation(models.Model):
  class Feedback(models.Model):
     name = models.CharField(max_length=100, verbose_name="Your Name")
     comment = models.TextField(verbose_name="Your Feedback")
-    Submitted_at = models.DateTimeField(auto_now_add=True, verbose_name="Submitted On")
+    submitted_at = models.DateTimeField(auto_now_add=True, verbose_name="Submitted On")
 
     class Meta:
         verbose_name = "Feedback"
