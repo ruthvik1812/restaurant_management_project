@@ -13,3 +13,8 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('id','customer_name','created_at')
     search_fields = ('customer_name',)
     filter_horizontal = ('items',)
+
+@admin.register(Todayspecial)
+class TodayspecialAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'created_at')
+    search_fields= ('name',)
