@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenicate, login, logout
 from django.conf import settings
 from django.utils import timezone
@@ -14,7 +14,18 @@ from .forms import ContactForm, FeedbackForm
 
 #==========Home page View==========#
 def home(request):
-    # Hamdle login form submission
+    restaurant = Restaurant.objects.first()
+    query = request.GET.get("q", "")
+    if query:
+        menu_items = MenuItem.objects.filter(name_icontains=query)
+    else:
+        menu_items = menuItem.objects.all()
+    # Get cart items from session
+
+    cart = request.session.get("cart", {})
+    total_items = sum(cart.values())
+
+    # Handle login form submission
     if request.method == "POST" and "login" in request.POST:(
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -78,12 +89,10 @@ def about(request):
     #========== Add to Cart View ============#
 
     def add_to_cart(request, item_id):
-        menu_item = MenuItem.objects.get(id=item_id)
-
-        # Get cart from session or create a new one
+        item = get_objects_or_404(MenuItem, id=item_id)
         cart = request.session.get("cart", {})
 
-        # Add or update  item quantity
+        # If item already exists, increase quantity
         if str(item_id) in cart:
             cart[str(item_id)] +=1
         else:
@@ -92,6 +101,27 @@ def about(request):
         request.session["cart"] = cart
         request.session.modified = True
         return redirect("home")
+    # --------------- REMOVE FROM CART ------------ #
+    def remove_from_cart(reequest, item_id):
+        cart = request.session.get("cart",{})
+
+        if str(item_id) in cart:
+            del cart[str(item_id)]
+        request.session["cart"] = cart
+    return redirect("home")
+
+    # ------------ UPDATE CART (QUANTITY) -------------- #
+    def update_cart(request, item_id):
+        cart = request.session.get("cart",{})
+        new_quantity = int(request.POST.get("quantity", 1))
+        
+        if str(item_id) in cart:
+            if new_quantity > 0:
+                cart[str(item_id)] = new_quantity
+            else:
+                del cart[str(item_id)]
+            request.session["cart"] = cart
+            return redirect("home")
     #===== Contact Form ==========#
     def contact(requst):
         form = ContactForm()
@@ -199,5 +229,3 @@ def get_menu(request):
  # ===== Order Page ====== #
  def order_page(request):
     return render(request, "home.html")
-
-
