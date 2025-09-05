@@ -500,6 +500,29 @@
     <span>Order Now</span>
 {% endif %}
  </nav>
+ <!-- CART SECTION ---------->
+ <div class="cart-container" style="background:#fff; padding:15px; border-radius:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-bottom:20px;">
+    <h2 style="color:#ff6347;">🛒 Your Cart</h2>
+    {% if cart %}
+    <ul style="list-style:none; padding:0;">
+        {% for item_id, quantity in cart.items %}
+        {% with menu_id, quantity in cart.items %}
+    <li style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
+        <span>{{ menu_item.name }}</span>
+        <form action="{% url 'update_cart' item_id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <input type="number" name="quantity" value="{{ quantity }}" min="1" style="width:50px;">
+            <button type="submit" style="background:#28a745; color:white; padding:5px 10px; border:none; border-radius:5px;">Update</button>
+        </form>
+        <a href="{% url 'remove_from_cart' item_id %}" style="color:red; text-decoration: none; font-weight:bold;"❌</a>
+    </li>
+    {% endwith %}
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p style="color:gray;">Your cart is empty</p>
+            {% endif %}
+ </div>
  <!-- MENU SECTION -->
  <section class="menu" id="menu">
     <h2> Our Menu</h2>
