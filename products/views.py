@@ -11,6 +11,16 @@ NOTE: Conside this as a reference and follow this same coding structure or forma
 '''
 
 # Create your views here.
+class home(request):
+    menu_items = MenuItem.objects.all()
+    specials = TodaySpecial.objects.all()
+    cart = request.session.grrt('cart', {})
+
+    return render(request, 'home/home.html', {
+        'menu_items': menu_items,
+        'specials': specials,
+        'cart': cart
+    })
 class ItemView(APIView):
 
     def get(self, request):
@@ -29,4 +39,4 @@ class ItemView(APIView):
             {"name":"Chicken pizza","price":90.00,"description":"Classic cheese and tomato pizza"  }
             {"name":"Burger,price":60,"description":1'Grilled veggie patty withlettuce and tomato"}
         ]
-        return render (request,"menu_list.html",{"menu_items": menu_items})
+        return render (request,"home.html",{"menu_items": menu_items})
