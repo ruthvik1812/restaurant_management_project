@@ -1,39 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang ="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
-</head>
-<body>
-    <div class="contact-container">
-        <h1>Contact Us</h1>
-        <p class="description">We'd love to hear from you! Please fill out the form below.</p>
+<meta charset="UTF-8">
+<meta name="viewport" content ="width=device-width,intial-scale=1.0">
+<title> Contact US</title>
+<style>
+  body  {
+    font-family:Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+            
+    }
+  form {
+    max-width: 400px;
+    margin: 40px auto;
+    background:#fff;
+    padding:20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 
-        <form class="contact-form" action="#" method="POST">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    }
+   input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    }
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    button {
+    background-color:#ff6347;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+   }
+    button:hover {
+    background-color:#e5533d;
+    }
+    .error {
+    color:red;
+    font-size: 14px;
+    }
+    
 
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+    </style>
+    </head>
+    <body>
+        <form id ="ContactForm">
+            <h2>Contact US</h2>
+            <label for ="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <span id="nameError" class="error"></span>
 
-            <button type="submit">Send Message</button>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" palceholder="Enter your email">
+            <span id="emailError" class="error"></span>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" palceholder="your message..."></textarea>
+
+            <button type="submit">send</button>
         </form>
-    </div>
-
-    <!-- Footer Section -->
-    <footer class="footer">
-        <p>&copy; 2025 RR Restaurant | All Rights Reserved</p>
-        <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/contact">Contact</a>
+        <!-- Restaurant Info -->
+        {% if location %}
+        <div class="restaurant-info">
+            <h3>📍 Our Restaurant-info</h3>
+            <p><strong>Name:</strong>{{ location.name }}</p>
+            <p><strong>Address:</strong>{{ location.address }}</p>
+            <p><strong>Phone:</strong>{{ location.phone }}</p>
+            <p><strong>Email:</strong> {{ location.email }}</p>
         </div>
+        {% endif %}
+        <script>
+            document.getElemntById("contactForm").addEventListener("submit",function(event){
+            let is valid =true;
+            
+            document.getElementById("nameError").textContent ="";
+            document.getElementById("emailError").textcontent ="";
+
+            const name = document.getElementById("name").value.trim();
+            if(name === "") {
+            document.getElementById("nameError").textContent ="Name is required.";
+            isValid =false;
+            }
+            const email - document.getElementById("email").value.trim();
+            if(email === "") {
+            document.getElementById("emailError").textContent = "Email is required.";
+            is =false;
+            }
+            if (!isValid) {
+            event.preventDefault();
+            }
+            });
+        </script>
+    
+    <!-- Footer -->
+    <footer>
+        <p><strong> Opening Hours:</strong> Mon-Fri : 11am -11pm, Sat - Sun: 10am -11pm</p>
+        <p>&copy;2025 RR Restaurant. All rights reserved.</p>
     </footer>
-</body>
+    </body>
 </html>
