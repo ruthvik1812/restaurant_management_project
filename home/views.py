@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
-from .models import Feedback, Staff, MenuItem, RestaurantLocation
+from .models import Feedback, Staff, MenuItem,TodaySpecial, RestaurantLocation
 from django.contrib.auth.hashers import check_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -20,8 +20,9 @@ def home(request):
         menu_items = MenuItem.objects.filter(name_icontains=query)
     else:
         menu_items = MenuItem.objects.all()
+    
     # Get cart items from session
-
+    specials = TodaySpecial.objects.all()
     cart = request.session.get("cart", {})
     total_items = sum(cart.values())
 
@@ -65,6 +66,7 @@ def home(request):
         "restaurant": restaurant,
         "menu_items": menu_items,
         "query": query,
+        "specials" = specials,
         "cart_count": cart_count,
         "faqs": faqs,
         "current_datetime": current_datetime,
