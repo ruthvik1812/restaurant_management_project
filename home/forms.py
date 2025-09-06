@@ -24,5 +24,5 @@ class ContactForm(forms.ModelForm):
         message = self.cleaned_data.get('message')
         if not message or len(message.strip()) < 10:
             raise forms.ValidationError("Message must be atleast 10 characters long.")
-        return message3
+        return message
         
