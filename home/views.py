@@ -146,7 +146,12 @@ def about(request):
         except BadHeaderError:
             messages.error(request, "Invalid header found. Email not sent.")
 
-            return redirect( reequest,'home')
+            return redirect("Contact")
+            # Redirect to Thank you page
+            return redirect("thank_you")
+        else:
+            form = ContactForm()
+        return render(request, "contact.html", {"form": form})
    
     # fetch restaurant Location dynamically
     location = RestaurantLocation.objects.first()
