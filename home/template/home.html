@@ -426,6 +426,13 @@
     <div style="tagline">
         🍽️ Welcome to <strong> {{ restaurant.name }}</strong> - Where Taste Meets Happiness! ❤️
     </div>
+    <!-- NAVIGATTION LINKS -->
+    <nav style="margin-top: 10px; text-align: center;">
+        <a href="{% url 'home' %}" style="color: white; margin: 0 15px; font-weight: bold;">Home</a>
+        <a href="#menu" style="color: white; margin: 0 15px; font-weight: bold;">Menu</a>
+        <a href="{% url 'order' %}" style="color: white; 0 15px; font-weight: bold;">Order</a>
+        <a href="{% url 'contact' %}" style="color: white; margin: 0 15px; font-weight: bold;">Contact</a>
+    </nav>
     </header>
     <!-- ======== Current Date & Time Section =======-->
     <section style="text-align: center; margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-shadow: 0 2px 6px rgba(0,0,0,0.1);">
@@ -675,6 +682,7 @@
         <p>Mon-Fri: 11am - 11am</p>
         <p>Sat-Sun: 10am - 11pm</p>
         <p>&copy; 2025 RR Restaurant. All rights reserved.
+            <a href="{url 'contact' %}" style="color:#ff6347;">Contact Us</a>
         <a href="#privacy-policy" style="color:#ff6347; text-decoration:none;">Privacy Policy</a>
         </p>
     </footer>
