@@ -156,8 +156,10 @@ def about(request):
     "menu_items": menu_items,
     "form": form,
     "location": location,
+    "specials": specials,
     "opening_hours":restaurant.opening_hours if restaurant else {},
     "query": query,
+    "cart": cart
     })
 
 #=== reservation page ====#
