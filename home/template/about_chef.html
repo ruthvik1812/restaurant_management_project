@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Our Chefs</title>
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ========== NAVBAR ========== */
+        nav {
+            background: #ff3e7f;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffe600;
+        }
+
+        /* ========== CHEF SECTION ========== */
+        .chef-section {
+            max-width: 1100px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 10px;
+            flex: 1;
+        }
+
+        .chef-card {
+            display: inline-block;
+            background: #fff;
+            margin: 15px;
+            padding: 20px;
+            width: 280px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .chef-card:hover {
+            transform: scale(1.07);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .chef-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .chef-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ff3e7f;
+            margin-top: 10px;
+        }
+
+        .chef-bio {
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 30px;
+        }
+
+        .footer-links {
+            margin: 10px 0;
+        }
+
+        .footer-links a {
+            color: #ff3e7f;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffe600;
+        }
+
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 8px;
+            color: #fff;
+            font-size: 20px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #ff3e7f;
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chef-card {
+                width: 90%;
+            }
+        }
+    </style>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'menu' %}">Menu</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'order' %}">Order</a>
+        <a href="{% url 'chefs' %}">Our Chefs</a>
+    </nav>
+
+    <!-- CHEF SECTION -->
+    <div class="chef-section">
+        <h2 style="color:#333;">👨‍🍳 Meet Our Chefs</h2>
+        <p style="color:#777; max-width:700px; margin:10px auto;">
+            At RR Restaurant, our talented chefs craft every dish with love, passion, and dedication.
+        </p>
+
+        {% if chefs %}
+            {% for chef in chefs %}
+                <div class="chef-card">
+                    {% if chef.image %}
+                    <img src="{{ chef.image.url }}" alt="Chef {{ chef.name }} from RR Restaurant">
+                    {% else %}
+                    <img src="{% static 'images/chef-default.jpg' %}" alt="Default chef image">
+                    {% endif %}
+                    <h3 class="chef-name">{{ chef.name }}</h3>
+                    <p class="chef-bio">{{ chef.bio }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="color:red; font-weight:bold;">No chef details available yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>🍴 RR Restaurant</h3>
+        <p>Serving delicious memories since 2018</p>
+
+        <div class="footer-links">
+            <a href="{% url 'home' %}">Home</a> |
+            <a href="{% url 'menu' %}">Menu</a> |
+            <a href="{% url 'contact' %}">Contact</a> |
+            <a href="{% url 'order' %}">Order</a> |
+            <a href="{% url 'chefs' %}">Our Chefs</a>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <p style="margin-top:10px; color:#aaa;">&copy; 2018 - {% now "Y" %} RR Restaurant | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
