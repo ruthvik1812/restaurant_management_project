@@ -147,3 +147,11 @@ class RestaurantLocation(models.Model):
         ordering = ["-submitted_at"]
     def __str__(self):
         return f"{self.name} - {self.submitted_at.strftime(%Y-%m-%d %H:%M')}"
+# ----------- ABOUT CHEF --------------- #
+class chef(models.Model):
+    name = models.CharField(max_length=100)
+    bio = models.TextField()
+    image = models.ImageField(upload_to='chefs/',blank=True, null=True)
+
+    def __str__(self):
+        return self.name
