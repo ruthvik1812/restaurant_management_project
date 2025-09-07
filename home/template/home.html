@@ -578,7 +578,14 @@
         <h3>{{ item.name }}</h3>
         <p> {{ item.description }}</p>
         <p class="price">₹ {{ item.price }}</p>
+        <p style="fonr-weight:bold; color:{% if item.is_available %} green{% else %}red{% endif %};">
+            {{ item.is_availability_status }}
+        </p>
+        {% if items.is_available %}
         <a href="{% url 'add_to_cart' item.id %}" class="add-to-cart-btn">➕ Add to cart</a>  
+        {% else %}
+        <button class="add-to-cart" disabled style="background:#ccc; cursor:not-allowed;">Coming Soon</button>
+        {% endif %}
     </div>
     {% endfor %}
     {% else %}
