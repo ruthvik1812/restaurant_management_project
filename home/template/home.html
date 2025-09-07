@@ -572,10 +572,10 @@
         {% if item.image %}
         <img src="{{ item.image.url }}" alt="Image of {{ item.name }}" class="menu-img" style="width:100%; height:auto;; border-radius:10px;"> 
         {% else %}
-        <img src -"{% static'images/menu/default.jpg' %}" alt="Default Dish Image" class="menu-img" style="width:100%; height:auto; border-radius:10px;">
+        <img src="{% static'images/menu/default.jpg' %}" alt="Default Dish Image" class="menu-img" style="width:100%; height:auto; border-radius:10px;">
         {% endif %}
         <!-- Dish Details-->
-        <h3> {{ item.name }}</h3>
+        <h3>{{ item.name }}</h3>
         <p> {{ item.description }}</p>
         <p class="price">₹ {{ item.price }}</p>
         <a href="{% url 'add_to_cart' item.id %}" class="add-to-cart-btn">➕ Add to cart</a>  
@@ -586,13 +586,30 @@
     {% endif %}
     </div>
     <!-- PAGINATION CONTROLS -->
-    {% IF }
-
+    {% if menu_items.has_other_pages %}
+    <div class="pagination" style="text-align:center; margin-top:20px;">
+        {% if menu_items.has_previous %}
+        <a href="?page=1#menu" style="margin:5px; padding:8px 12px; background:#ff3e7f; color:#ff3e7f; border-radius:5px; text-decoration:none;">First</a>
+        <a href="?page={{ menu_items.preivous_page_number }}#menu" style="margin:5px; padding:8px 12px; background:#555; color:#fff; border-radius:5px; text-decoration:none;">Prev</a>
+        {% endif %}
+        {% for num in menu_items.paginator.page_range %}
+        {% if menu_items.number == num %}
+        <span style="margin:5px; padding:8px 12px; background:#333; color:#fff; border-radius:5px;">{{ num }}</span>
+        {% else %}
+        <a href="?page={{ num }}#menu" style="margin:5px; padding:8px 12px; background:#eee; color:#333; border-radius:5px; text-decoration:none;">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+        {% if menu_items.has_next %}
+        <a href="?page={{ menu_items.next_page_number }}#menu" style="margin:5px; padding:8px 12px; backkground:#555; border-radius:5px; text-decoration:none;">Next</a>
+        <a href="?page={{ menu_items.paginator.num_Pages }}#menu" style="margin:5px; padding:8px 12px; background:#ff3e7f; border-radius: 5px; text-decoration:none:">Last</a>
+        {% endif %}
+    </div>
+    {% endif %}
     <!-- Food Gallery Section -->
     <section class="food-gallery" style="display:flex; flex-wrap: wrap; gap:15px; justify-content:center; margin:40px 0;">
-        <img src="{% static 'images/food1.jpg' %}" alt="Delicious Dish1" style="width:250px; height:200;  object-fit:cover; border-radius:12px;">
-        <img src="{% static 'images/food2.jpg %}" alt="Delicious Dish2" style="width:250px; height:200px; object-fit:cover; border-radius:12px;">
-        <img src="{% static 'images/food3.jpg %}" alt="Delicious Dish2" style="width:250px; height:200px; object-fit:cover; border-radius:12px;">
+        <img src="{% static 'images/food1.jpg' %}" alt="Delicious South Indian meal served at RR restaurant" style="width:250px; height:200;  object-fit:cover; border-radius:12px;">
+        <img src="{% static 'images/food2.jpg %}" alt="Spicy Biryani with freshly spicy ingridients" style="width:250px; height:200px; object-fit:cover; border-radius:12px;">
+        <img src="{% static 'images/food3.jpg %}" alt="vegetarian platter " style="width:250px; height:200px; object-fit:cover; border-radius:12px;">
     </section>
  </section>
  <!--=== Order confirmation section ===-->
