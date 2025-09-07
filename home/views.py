@@ -73,6 +73,7 @@ def home(request):
         "current_datetime": current_datetime,
         "order_number": order_number,
     })
+# ========== 
 # ====== Order Page (Redirects to Home with confirmation)===== #
 def order_page(request):
     return redirect("/?confirmed=true")
