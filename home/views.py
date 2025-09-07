@@ -10,6 +10,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .forms import ContactForm, FeedbackForm
+from .models import RestaurantInfo
 # Create your views here.
 
 #==========Home page View==========#
