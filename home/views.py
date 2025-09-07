@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .forms import ContactForm, FeedbackForm
 from .models import RestaurantInfo
+from .models import chef
 # Create your views here.
 
 #==========Home page View==========#
@@ -237,3 +238,7 @@ def get_menu(request):
  # ===== Order Page ====== #
  def order_page(request):
     return render(request, "home.html")
+# ======= ABOUT CHEF ========= #
+def chef(request):
+    chefs = chef.objects.all()
+    return render(request, 'chef.html',{'chefs': chefs})
