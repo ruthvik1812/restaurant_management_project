@@ -79,14 +79,8 @@ def order_page(request):
     
 # ====== About Page View ============#
 def about(request):
-    context = {
-        "restaurant_name": "RR Restaurant",
-        "history": "Founded in 2018, RR Restaurant haa been serving delicious dishes crafted with passion and love. Over the years,we've grown from a small family-owned eatery to one of the most loved dining spots in town.",
-        "mission": "To be the most trusted and loved restaurant brand, creating unforgettable dining experiences for everyone.",
-        "vision": "To be the most trusted and loved resataurant brand, creating unforgettable dining experiences service.",
-        "values":["Fresh Ingredients", "Customer Satisfaction", "Quality service", "Sustainability"],
-        }
-    return render(request, "home.html", context)
+    restaurant  = RestaurantInfo.objects.first()
+    return render(request, "about.html",{"restaurant": restaurant})
 
     }
     #========== Add to Cart View ============#
