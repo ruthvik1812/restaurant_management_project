@@ -6,41 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - RR Restaurant</title>
     <style>
+        /* ====== Global Styles ====== */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #fafafa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
             margin: 0;
             padding: 0;
         }
 
+        /* ====== Navbar Styling ====== */
+        .navbar {
+            background-color: #e74c3c;
+            padding: 15px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            background-color: #c0392b;
+        }
+
+        /* ====== Container Styling ====== */
         .container {
             max-width: 900px;
             margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-in-out;
         }
 
+        /* ====== Heading Styles ====== */
         h1 {
-            color: #2c3e50;
+            color: #e74c3c;
             text-align: center;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 10px;
         }
 
         h2 {
-            color: #16a085;
-            margin-top: 30px;
-            font-size: 22px;
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 24px;
+            border-left: 5px solid #e74c3c;
+            padding-left: 10px;
         }
 
+        /* ====== Paragraph Styling ====== */
         p {
             color: #555;
-            font-size: 18px;
-            line-height: 1.7;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 15px;
             text-align: justify;
         }
 
+        /* ====== Highlight Text ====== */
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* ====== Bullet Points Styling ====== */
         ul {
             margin-top: 10px;
             padding-left: 20px;
@@ -48,24 +88,65 @@
 
         ul li {
             font-size: 17px;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            position: relative;
+            padding-left: 20px;
         }
 
-        .highlight {
-            color: #e74c3c;
+        ul li::before {
+            content: "✓";
+            color: #27ae60;
             font-weight: bold;
+            position: absolute;
+            left: 0;
         }
 
+        /* ====== Footer Styling ====== */
         .footer {
             margin-top: 30px;
             text-align: center;
             font-size: 16px;
-            color: #888;
+            color: #666;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer strong {
+            color: #e74c3c;
+        }
+
+        /* ====== Hover Effect on Container ====== */
+        .container:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* ====== Fade-in Animation ====== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- ====== Navigation Bar ====== -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">🏠 Home</a>
+        <a href="{% url 'menu_page' %}">🍽️ Menu</a>
+        <a href="{% url 'about' %}">ℹ️ About</a>
+        <a href="{% url 'contact' %}">📩 Contact</a>
+        <a href="{% url 'order_page' %}">🛒 Order</a>
+    </div>
+
+    <!-- ====== Main Content ====== -->
     <div class="container">
         {% if restaurant %}
             <h1>Welcome to {{ restaurant.name }}</h1>
