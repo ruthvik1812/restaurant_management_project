@@ -18,7 +18,7 @@ urlpatterns = [
     path('remove-from-cart/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
     path('update-cart/<int:item_id>/', views.update_cart, name='update_cart'),
     path("about/", views.about, name="about"),
-    
+    path('chefs/', views.chefs, name='chefs'),
     ]
 
 if settings.DEBUG:
