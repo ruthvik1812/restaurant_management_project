@@ -21,6 +21,9 @@ def home(request):
         menu_items = MenuItem.objects.filter(name_icontains=query)
     else:
         menu_items = MenuItem.objects.all()
+    paginator = paginator(menu_list, 6)
+    page_number = request.GET.get("page")
+    menu_items = paginator.get_page(page_number)
     
     # Get cart items from session
     specials = TodaySpecial.objects.all()
