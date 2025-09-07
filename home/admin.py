@@ -8,7 +8,10 @@ class RestaurantAdmin(admin.ModelAdmin):
     search_fields = ('name', 'owner_name', 'city')
     list_filter =('city',)
     ordering = ('-created_at')
-
+#------- RESTAURANT INFO ------------#
+@admin.register(RestaurantInfo)
+class RestaurantInfoAdmin(admin.ModelAdmin):
+    list_display = ('name', 'updated_at')
 #---------MENU ITEM ADMIN ----------#
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
