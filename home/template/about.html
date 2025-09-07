@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - RR Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #16a085;
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        ul li {
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 16px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if restaurant %}
+            <h1>Welcome to {{ restaurant.name }}</h1>
+            <p>{{ restaurant.description }}</p>
+        {% else %}
+            <h1>Welcome to RR Restaurant</h1>
+            <p>
+                Since <span class="highlight">2018</span>, RR Restaurant has been serving mouth-watering dishes
+                made with love, passion, and the freshest ingredients. What started as a small family-run
+                eatery has grown into one of the most loved dining destinations in the city.
+            </p>
+        {% endif %}
+
+        <h2>Our Story</h2>
+        <p>
+            Established in <span class="highlight">2018</span>, RR Restaurant was founded with a vision to provide
+            customers with a truly unforgettable dining experience. Over the years, we’ve evolved into a
+            modern yet cozy restaurant that offers the perfect blend of taste, quality, and hospitality.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to serve food that not only satisfies your hunger but also brings a smile to your face.
+            We believe in using <span class="highlight">fresh ingredients</span>, maintaining
+            <span class="highlight">authentic flavors</span>, and delivering an experience you’ll cherish.
+        </p>
+
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Serving delicious meals since <strong>2018</strong></li>
+            <li>Fresh, locally sourced ingredients</li>
+            <li>Warm, family-friendly atmosphere</li>
+            <li>Wide range of dishes to suit every taste</li>
+            <li>Excellent customer service and hospitality</li>
+        </ul>
+
+        <h2>Our Commitment</h2>
+        <p>
+            At RR Restaurant, we are committed to maintaining the highest standards of quality and service.
+            Every dish we prepare is crafted with care, ensuring that you leave with a happy heart and a full stomach.
+        </p>
+
+        <div class="footer">
+            Thank you for being a part of our journey since 2018! ❤️<br>
+            <strong>RR Restaurant — Where Taste Meets Tradition</strong>
+        </div>
+    </div>
+</body>
+</html>
