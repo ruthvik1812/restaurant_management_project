@@ -429,7 +429,7 @@
     <!-- NAVIGATTION LINKS -->
     <nav style="margin-top: 10px; text-align: center;">
         <a href="{% url 'home' %}" style="color: white; margin: 0 15px; font-weight: bold;">Home</a>
-        <a href="#menu" style="color: white; margin: 0 15px; font-weight: bold;">Menu</a>
+        <a href="{% url 'home' %}#menu" style="color: white; margin: 0 15px; font-weight: bold;">Menu</a>
         <a href="{% url 'order' %}" style="color: white; 0 15px; font-weight: bold;">Order</a>
         <a href="{% url 'contact' %}" style="color: white; margin: 0 15px; font-weight: bold;">Contact</a>
         <a href="{% url 'About' %}" style="color: white; margin: 0 15px; font-weight: bold;">About</a> 
@@ -585,6 +585,9 @@
     <p style="color:red; font-weight:bold;">No menu items found for "{{ query}}"</p>
     {% endif %}
     </div>
+    <!-- PAGINATION CONTROLS -->
+    {% IF }
+
     <!-- Food Gallery Section -->
     <section class="food-gallery" style="display:flex; flex-wrap: wrap; gap:15px; justify-content:center; margin:40px 0;">
         <img src="{% static 'images/food1.jpg' %}" alt="Delicious Dish1" style="width:250px; height:200;  object-fit:cover; border-radius:12px;">
