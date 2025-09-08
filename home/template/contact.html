@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+  }
+
+  form {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+
+  button {
+    background-color: #ff6347;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background-color: #e5533d;
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+  }
+
+  /* Success message */
+  .success-message {
+    max-width: 400px;
+    margin: 10px auto;
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    display: none;
+    font-size: 16px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Restaurant info */
+  .restaurant-info {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-size: 14px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #222;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        Thank you! Your message has been sent successfully.
+    </div>
+
+    <form id="contactForm" method="POST">
+        {% csrf_token %}
+        <h2>Contact Us</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        <span id="nameError" class="error"></span>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <span id="emailError" class="error"></span>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" placeholder="Your message..."></textarea>
+        <span id="messageError" class="error"></span>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <!-- Restaurant Info -->
+    {% if location %}
+    <div class="restaurant-info">
+        <h3>📍 Our Restaurant Info</h3>
+        <p><strong>Name:</strong> {{ location.name }}</p>
+        <p><strong>Address:</strong> {{ location.address }}</p>
+        <p><strong>Phone:</strong> {{ location.phone }}</p>
+        <p><strong>Email:</strong> {{ location.email }}</p>
+    </div>
+    {% endif %}
+
+    <footer>
+        <p><strong>Opening Hours:</strong> Mon-Fri: 11am - 11pm, Sat-Sun: 10am - 11pm</p>
+        <p>&copy; 2025 RR Restaurant. All rights reserved.</p>
+    </footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Stop form submission until validated
+
+    let isValid = true;
+
+    // Reset error messages
+    document.getElementById("nameError").textContent = "";
+    document.getElementById("emailError").textContent = "";
+    document.getElementById("messageError").textContent = "";
+
+    // Get input values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const successBox = document.getElementById("successMessage");
+
+    // Name validation
+    if (name === "") {
+        document.getElementById("nameError").textContent = "Name is required.";
+        isValid = false;
+    }
+
+    // Email validation
+    if (email === "") {
+        document.getElementById("emailError").textContent = "Email is required.";
+        isValid = false;
+    } else {
+        // Simple email pattern check
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById("emailError").textContent = "Enter a valid email.";
+            isValid = false;
+        }
+    }
+
+    // Message validation
+    if (message === "") {
+        document.getElementById("messageError").textContent = "Message is required.";
+        isValid = false;
+    }
+
+    // If valid → Show success message & reset form
+    if (isValid) {
+        successBox.style.display = "block";
+        document.getElementById("contactForm").reset();
+
+        // Auto-hide success message after 3 seconds
+        setTimeout(() => {
+            successBox.style.display = "none";
+        }, 3000);
+    }
+});
+</script>
+</body>
+</html>
