@@ -448,6 +448,11 @@
             {% now "l,d F Y"} — {% now "h: i A" %}
         </p>
     </section>
+    {% extends "base.html" %}
+    {% load static %}
+    {% load custom_filters %}
+    {% block title %}RR Restaurant | Home{% endblock %}
+    {% block content %}
     <!-- HERO -->
  <section class="hero">
     <h2>Delicious food, made with love</h2>
