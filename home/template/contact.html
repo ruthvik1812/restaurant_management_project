@@ -1,180 +1,116 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang ="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | RR Restaurant</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fafafa;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content ="width=device-width,intial-scale=1.0">
+<title> Contact US</title>
+<style>
+  body  {
+    font-family:Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+            
+    }
+  form {
+    max-width: 400px;
+    margin: 40px auto;
+    background:#fff;
+    padding:20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 
-        form {
-            max-width: 450px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
+    }
+   input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    }
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 15px;
-        }
+    button {
+    background-color:#ff6347;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+   }
+    button:hover {
+    background-color:#e5533d;
+    }
+    
+    .error {
+    color:red;
+    font-size: 14px;
+    }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-        }
+    .success-message {
+     max-width: 400px;
+     margin: 10px auto;
+     background: #4CAF50;
+     color: white;
+     padding: 10px;
+     text-align: center;
+     border-radius: 6px;
+     }
+    
 
-        input, textarea, button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
-        }
-
-        button {
-            background-color: #ff6347;
-            color: #fff;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background-color: #e5533d;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-
-        /* Restaurant Info Styling */
-        .restaurant-info {
-            max-width: 450px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .restaurant-info h3 {
-            margin-bottom: 8px;
-            color: #007bff;
-        }
-
-        .restaurant-info p {
-            margin: 5px 0;
-            font-size: 15px;
-        }
-
-        /* Footer Styling */
-        footer {
-            text-align: center;
-            padding: 12px;
-            margin-top: 20px;
-            background: #333;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
     </style>
-</head>
-<body>
-    <!-- Contact Form -->
-    <form id="contactForm" method="POST">
-        {% csrf_token %}
-        <h2>Contact Us</h2>
+    </head>
+    <body>
+        <form id ="ContactForm">
+            <h2>Contact US</h2>
+            <label for ="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <span id="nameError" class="error"></span>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-        <span id="nameError" class="error"></span>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" palceholder="Enter your email">
+            <span id="emailError" class="error"></span>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        <span id="emailError" class="error"></span>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" palceholder="your message..."></textarea>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" placeholder="Your message..." rows="4" required></textarea>
-        <span id="messageError" class="error"></span>
+            <button type="submit">send</button>
+        </form>
+        <!-- Restaurant Info -->
+        {% if location %}
+        <div class="restaurant-info">
+            <h3>📍 Our Restaurant-info</h3>
+            <p><strong>Name:</strong>{{ location.name }}</p>
+            <p><strong>Address:</strong>{{ location.address }}</p>
+            <p><strong>Phone:</strong>{{ location.phone }}</p>
+            <p><strong>Email:</strong> {{ location.email }}</p>
+        </div>
+        {% endif %}
+        <script>
+            document.getElemntById("contactForm").addEventListener("submit",function(event){
+            let is valid =true;
+            
+            document.getElementById("nameError").textContent ="";
+            document.getElementById("emailError").textcontent ="";
 
-        <button type="submit">Send</button>
-    </form>
-
-    <!-- Restaurant Info -->
-    {% if location %}
-    <div class="restaurant-info">
-        <h3>📍 Our Restaurant</h3>
-        <p><strong>Name:</strong> {{ location.name }}</p>
-        <p><strong>Address:</strong> {{ location.address }}</p>
-        <p><strong>Phone:</strong> {{ location.phone }}</p>
-        <p><strong>Email:</strong> {{ location.email }}</p>
-    </div>
-    {% endif %}
-
+            const name = document.getElementById("name").value.trim();
+            if(name === "") {
+            document.getElementById("nameError").textContent ="Name is required.";
+            isValid =false;
+            }
+            const email - document.getElementById("email").value.trim();
+            if(email === "") {
+            document.getElementById("emailError").textContent = "Email is required.";
+            is =false;
+            }
+            if (!isValid) {
+            event.preventDefault();
+            }
+            });
+        </script>
+    
     <!-- Footer -->
     <footer>
-        <p><strong>Opening Hours:</strong> Mon-Fri: 11am - 11pm | Sat-Sun: 10am - 11pm</p>
-        <p>&copy; 2025 RR Restaurant. All Rights Reserved.</p>
+        <p><strong> Opening Hours:</strong> Mon-Fri : 11am -11pm, Sat - Sun: 10am -11pm</p>
+        <p>&copy;2025 RR Restaurant. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Form Validation
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            let isValid = true;
-
-            // Clear previous errors
-            document.getElementById("nameError").textContent = "";
-            document.getElementById("emailError").textContent = "";
-            document.getElementById("messageError").textContent = "";
-
-            // Name Validation
-            const name = document.getElementById("name").value.trim();
-            if (name === "") {
-                document.getElementById("nameError").textContent = "Name is required.";
-                isValid = false;
-            }
-
-            // Email Validation
-            const email = document.getElementById("email").value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email === "") {
-                document.getElementById("emailError").textContent = "Email is required.";
-                isValid = false;
-            } else if (!emailRegex.test(email)) {
-                document.getElementById("emailError").textContent = "Enter a valid email address.";
-                isValid = false;
-            }
-
-            // Message Validation
-            const message = document.getElementById("message").value.trim();
-            if (message.length < 10) {
-                document.getElementById("messageError").textContent = "Message must be at least 10 characters.";
-                isValid = false;
-            }
-
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
-</body>
+    </body>
 </html>
