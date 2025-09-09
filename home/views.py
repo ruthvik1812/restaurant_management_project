@@ -66,7 +66,14 @@ def home(request):
     order_number = None
     if request.GET.get("confirmed") == "true":
         order_number = random.randit(1000, 9999)
-    
+   opening_hours = {
+    "Monday":"10:00 AM - 10:00 PM",
+    "Tuesday": "10:00 AM - 10:00 PM",
+    "Wednesday": "10:00 AM - 10:00 PM",
+    "Thursday": "10:00 AM - 10:00PM",
+    "FRIDAY" : "09:00 AM - 10:00 PM",
+    "Saturday": "09:00AM - 9:00 PM"
+   } 
     return render(request, "home.html",{
         "restaurant": restaurant,
         "menu_items": menu_items,
@@ -76,6 +83,7 @@ def home(request):
         "faqs": faqs,
         "current_datetime": current_datetime,
         "order_number": order_number,
+        "opening_hours": opening_hours,
     })
 # ========== 
 # ====== Order Page (Redirects to Home with confirmation)===== #
