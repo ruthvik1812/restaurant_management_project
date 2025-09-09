@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-{% block title %}A
+{% block title %}About US - RR Restaurant{% endblock %}
+
+{% block Content %}
 
     <!-- ====== Main Content ====== -->
-    <div class="container">
+    <section class="container">
         {% if restaurant %}
             <h1>Welcome to {{ restaurant.name }}</h1>
             <p>{{ restaurant.description }}</p>
@@ -48,6 +50,6 @@
             Thank you for being a part of our journey since 2018! ❤️<br>
             <strong>RR Restaurant — Where Taste Meets Tradition</strong>
         </div>
-    </div>
+    </section>
 </body>
 </html>
