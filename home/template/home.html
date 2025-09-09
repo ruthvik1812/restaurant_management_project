@@ -448,11 +448,7 @@
             {% now "l,d F Y"} — {% now "h: i A" %}
         </p>
     </section>
-    {% extends "base.html" %}
-    {% load static %}
-    {% load custom_filters %}
-    {% block title %}RR Restaurant | Home{% endblock %}
-    {% block content %}
+   
     <!-- HERO -->
  <section class="hero">
     <h2>Delicious food, made with love</h2>
@@ -708,7 +704,15 @@
         <a href="#top" style="color:#ff3e7f; font-weight:bold;">⬆️ Back to Top</a>
     </p>
  </section>
-
+<!--=========Opening Hours Section ========-->
+<section class="opening-hours">
+    <h2> opening-hours</h2>
+    <ul>
+        {% for day, time in opening_hours.items %}
+    <li><strong>{{ day }}:</strong> {{ time }}</li>
+    {% endfor %}
+    </ul>
+</section>
  <!-- Footer Section-->
     <footer>
         <p><strong>Opening Hours</strong></p>
