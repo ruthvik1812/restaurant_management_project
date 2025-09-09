@@ -250,6 +250,44 @@ header h1 {
 .contact-form button:hover {
     background-color: #0056b3;
 }
+/* ========== OPENING HOURS SECTION ========== */
+.opening-hours {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #fff8f8;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.opening-hours h2 {
+    color: #ff3e7f;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.opening-hours ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.opening-hours li {
+    font-size: 16px;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.opening-hours li:last-child {
+    border-bottom: none;
+}
+
+.opening-hours li strong {
+    color: #e6005c;
+}
 
 /* =============== FOOTER ==================== */
 footer {
