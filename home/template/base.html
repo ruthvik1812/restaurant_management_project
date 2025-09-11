@@ -5,45 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}RR Restaurant{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
-    <style>
-        html {
-            scroll-behavior: smooth; /* ✅ Enables smooth scrolling */
-        }
-
-        footer {
-            background-color: #222;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-
-        nav {
-            background:#ff3e7f;
-            padding:15px;
-            display:flex;
-            justify-content:center;
-            gap:30px;
-            font-size:18px;
-            font-weight:bold;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color:white;
-            text-decoration:none;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+    <!--====== HEADER =====-->
+    <header>
+        <img src="{% static 'images/logo.png' %}" alt="Restaurant Logo" class="logo">
+        <h1>Welcome to RR Restaurant</h1>
+        <p class="phone">📞 +91 8639139326</p>
+
 
     <!-- ======== NAVBAR ======== -->
     <nav>
