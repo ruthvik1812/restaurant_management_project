@@ -54,7 +54,10 @@
         <a href="{% url 'chefs' %}">Chefs</a>
         <a href="{% url 'About' %}">About</a>
     </nav>
-
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs">
+    {% block breadcrumbs %}{% endblock %}
+</div>
     <!-- ======== PAGE CONTENT ======== -->
     {% block content %}
     {% endblock %}
