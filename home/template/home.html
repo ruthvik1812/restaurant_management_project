@@ -7,30 +7,7 @@
 <a href="{url 'home' %}">Home</a>
 {% endblock %}
 {% block content %}
-    <header>
-        <!--logo prominently displayed-->
-        <div style="display: flex; align-items: center;">
-        {% if restaurant.logo %}
-        <img src="{{ restaurant.logo.url }}" alt="{{restaurant.name }}" class="logo">
-        {% else %}
-        <img src ="{% static 'images/logo.png' %}" alt="RR Restaurant official logo"  class="logo">
-        {% endif %}
-        <h1>{{ restaurant.name }}</h1>
-        <p href="tel:{{ restaurant.phone }}" class="phone"> 📞 Contact Us: {{ phone_number }}</p>
-    
-    <!-- Welcome Tagline------->
-    <div style="tagline">
-        🍽️ Welcome to <strong> {{ restaurant.name }}</strong> - Where Taste Meets Happiness! ❤️
-    </div>
-    <!-- NAVIGATTION LINKS -->
-    <nav style="margin-top: 10px; text-align: center;">
-        <a href="{% url 'home' %}" style="color: white; margin: 0 15px; font-weight: bold;">Home</a>
-        <a href="{% url 'home' %}#menu" style="color: white; margin: 0 15px; font-weight: bold;">Menu</a>
-        <a href="{% url 'order' %}" style="color: white; 0 15px; font-weight: bold;">Order</a>
-        <a href="{% url 'contact' %}" style="color: white; margin: 0 15px; font-weight: bold;">Contact</a>
-        <a href="{% url 'About' %}" style="color: white; margin: 0 15px; font-weight: bold;">About</a> 
-    </nav>
-    </header>
+  
     
     <!-- ======== Current Date & Time Section =======-->
     <section style="text-align: center; margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-shadow: 0 2px 6px rgba(0,0,0,0.1);">
@@ -46,7 +23,7 @@
         </p>
     </section>
    
-    <!-- HERO -->
+    <!--===  HERO SECTION ==== -->
  <section class="hero">
     <h2>Delicious food, made with love</h2>
     <p>Fresh, tasty dishes crafted specially for you</p>
