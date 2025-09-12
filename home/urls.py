@@ -19,6 +19,7 @@ urlpatterns = [
     path('update-cart/<int:item_id>/', views.update_cart, name='update_cart'),
     path("about/", views.about, name="about"),
     path('chefs/', views.chefs, name='chefs'),
+    path('reservations/', views.reservations, name='reservation'),
     ]
 
 if settings.DEBUG:
