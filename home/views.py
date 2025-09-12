@@ -85,7 +85,7 @@ def home(request):
         "order_number": order_number,
         "opening_hours": opening_hours,
     })
-# ========== 
+
 # ====== Order Page (Redirects to Home with confirmation)===== #
 def order_page(request):
     return redirect("/?confirmed=true")
@@ -96,6 +96,9 @@ def about(request):
     return render(request, "about.html",{"restaurant": restaurant})
 
     }
+    # ============ reservation view ====== #
+    def reservations(reequest): 
+        return render(request, 'reservations.html')
     #========== Add to Cart View ============#
 
     def add_to_cart(request, item_id):
