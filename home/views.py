@@ -12,6 +12,7 @@ from rest_framework import status
 from .forms import ContactForm, FeedbackForm
 from .models import RestaurantInfo
 from .models import chef
+from .forms import ReservationForm
 # Create your views here.
 
 #==========Home page View==========#
@@ -96,9 +97,17 @@ def about(request):
     return render(request, "about.html",{"restaurant": restaurant})
 
     }
-    # ============ reservation view ====== #
-    def reservations(reequest): 
-        return render(request, 'reservations.html')
+    # ============ Reservation view ====== #
+    def reservations(request): 
+        if request.method == "POST":
+            form = ReservationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return render(request, 'home/reservation_success.html')
+            else:
+                form = ReservationForm()
+            return render(request, 'home/reservations.html',{'form': form})
+
     #========== Add to Cart View ============#
 
     def add_to_cart(request, item_id):
