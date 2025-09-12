@@ -25,4 +25,12 @@ class ContactForm(forms.ModelForm):
         if not message or len(message.strip()) < 10:
             raise forms.ValidationError("Message must be atleast 10 characters long.")
         return message
-        
+class ReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['name','email', 'phone','date','time','guests', 'notes']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time':forms.TimeInput(attrs={'type':'time'}),
+            
+        }
