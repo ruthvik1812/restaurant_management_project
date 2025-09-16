@@ -12,7 +12,8 @@ from rest_framework import status
 from .forms import ContactForm, FeedbackForm
 from .models import RestaurantInfo
 from .models import chef
-from .forms import ReservationForm
+from .models import NewsletterForm
+from .models import NewsletterSubscriber
 # Create your views here.
 
 #==========Home page View==========#
@@ -73,9 +74,17 @@ def home(request):
     "Wednesday": "10:00 AM - 10:00 PM",
     "Thursday": "10:00 AM - 10:00PM",
     "FRIDAY" : "09:00 AM - 10:00 PM",
-    "Saturday": "09:00AM - 9:00 PM"
+    "Saturday": "09:00 AM - 10:00 PM",
+    "Sunday": "9:00 AM - 11:00PM",
    } 
+   # Newsletter Form
+   if request.method =="POST" and "newsletter" in request.POST:
+    form = NeewsletterForm(request.POST)
+    if form.is_valid():
+        form.save()
     return render(request, "home.html",{
+        "form" :NewsletterForm(),
+        "success": "You have subscribed successfully!",
         "restaurant": restaurant,
         "menu_items": menu_items,
         "query": query,
@@ -86,7 +95,22 @@ def home(request):
         "order_number": order_number,
         "opening_hours": opening_hours,
     })
-
+    else:
+        form = NewsletterForm()
+    return render(reequest, "home.html", 
+    {
+        "restaurant": restaurant,
+        "menu_items": menu_items,
+        "query": query,
+        "specials": specials,
+        "cart_count": cart_count,
+        "faqs": faqs,
+        "current_datetime": timezone.now(),
+        "order_number": order_number,
+        "opening_hours": opening_hours,
+        "form": form,
+    })
+# ========== 
 # ====== Order Page (Redirects to Home with confirmation)===== #
 def order_page(request):
     return redirect("/?confirmed=true")
@@ -97,17 +121,6 @@ def about(request):
     return render(request, "about.html",{"restaurant": restaurant})
 
     }
-    # ============ Reservation view ====== #
-    def reservations(request): 
-        if request.method == "POST":
-            form = ReservationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return render(request, 'home/reservation_success.html')
-            else:
-                form = ReservationForm()
-            return render(request, 'home/reservations.html',{'form': form})
-
     #========== Add to Cart View ============#
 
     def add_to_cart(request, item_id):
