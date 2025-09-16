@@ -232,7 +232,18 @@
         </button>
     </form>
  </section>
- 
+ <!-- === NEWSLETTER SUBSCRIPTION === -->
+ <section class="newsletter" style="margin-top:40px; text-align:center;">
+    <h2>📩 Subscribe to our Newsletter</h2>
+    {% if success %}
+        <p style="color:green;">{{ success }}</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+ </section>
  <!-- Google Map Section -->
  <section style="padding: 40px; background-color: #fefefe;text-align: center; border-top: 2px solid #eee; margin-top: 30px;">
      <h2 style="color: #ff6347; font-size:28px; margin-bottom: 15px;"> 📍 Our Location </h2>
