@@ -20,6 +20,8 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path('chefs/', views.chefs, name='chefs'),
     path('reservations/', views.reservations, name='reservation'),
+    path('categories/', MenuCategoryListView.as_view(), name='menu-categories'),
+    path('api/',include('home.urls')),
     ]
 
 if settings.DEBUG:
