@@ -2,30 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from products.models import product
 
-# ---- ORDER STSTUS ------ #
-class OrderStatus(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.name
-# -------------- ORDER ---------- #
-class Order(models.Model):
-    customer_name = models.CharField(max_length=100)
-    total_price = models.DecimalField(max_digits=8, decimal_places=2)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    status = models.ForeignKey (
-        OrderStatus,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="orders"
-    )
-
-    def __str__(self):
-        return f"Order #{self.id} - {self.customer_name} ({self.status})"
-
-
 class Order(models.Model):
     STATUS_CHOICES = [
         ("PENDING","Pending"),
@@ -50,18 +26,9 @@ class Order(models.Model):
         return total
 
     class OrderItem(models.Model):
-        order = models.ForeignKey(order,on_delete=models.CASCADE,related_name="items")
+        order = models.ForeignKey(Order,, on_delete=models.CASCADE,related_name="items")
         product = models.ForeignKey(Product, on_delete=models.CASCADE)
         quantity = models.PositiveIntegerField(default=1)
 
-        def __str__(self):
+        def __str__(Self):
             return f"{self.quantity)} * {self.product.name} (Order {self.order.id})"
-        
-        class Coupon(models.Model):
-            code = models.CharField(max_length=20, unique=True)
-            discount = models.DecimalField(max_digits=5, decimal_places=2)
-            active = models.BooleanField(default=True)
-            created_at = models.DateTimeField(auto_now_add=True)
-
-            def __str__(self):
-                return self.code
