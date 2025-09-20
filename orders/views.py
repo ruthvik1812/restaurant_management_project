@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import MenuItem
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
+from .models import Order
+from .serializers import OrderSerializer
 
-# Create your views here.
-# Home view
+# Create your views here
+# ------ Home view ----- #
 def home(request):
     menu_items = MenuItem.objects.all()
     
@@ -45,3 +49,10 @@ def update_cart(request, item_id):
         cart.pop(str(item_id), None)
     request.session['cart'] = cart
 return redirect('home')
+
+class OrderHistoryView(ListAPIView):
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Order.objects.filter(customer=self.request.user).order_by("-created_at")
