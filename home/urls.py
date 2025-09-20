@@ -1,5 +1,11 @@
 from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from  .views import MenuItemViewSet
 from . import views.
+
+router = DefaultRouter()
+router.register(r'menu-items', MenuItemViewSet, basename="menuitem")
 
 urlpatterns = [
     path('',views.home,name ="home"),
@@ -19,6 +25,7 @@ urlpatterns = [
     path('update-cart/<int:item_id>/', views.update_cart, name='update_cart'),
     path("about/", views.about, name="about"),
     path('chefs/', views.chefs, name='chefs'),
+    path("api/", include(router.urls)),
     path("api/")
     ]
 
