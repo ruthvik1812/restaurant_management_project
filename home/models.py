@@ -56,13 +56,7 @@ class Meta:
 
     def __str__(self):
     return f"{self.name} - {self.city}"
-# --------- MENU CATEGORY ----------#
-class MenuCategory(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-# ---------- Today's special Menu ------------- #
+# Today's special Menu
 class TodaySpecial(models.Model):
     name = models.CharField(max_length=200, verbose_name="Special Item Name")
     description = models.TextField(verbose_name="Special Item Description", blank="True", null="True")
@@ -75,7 +69,7 @@ class TodaySpecial(models.Model):
         ordering = ['-created_at']
     def __str__(Self):
         return self.name
-# ---------- MENU ITEM ------------ #
+# Menu Model
 class MenuItem(models.Model):
     restaurant = models.ForeignKey(
         'Restaurant',
@@ -85,7 +79,7 @@ class MenuItem(models.Model):
     )   
     name = models.CharField(
         max_length=100,
-        verbose_name="dish Name"
+        verbose_name="Dish Name"
     )
 
     description = models.TextField(
@@ -115,7 +109,6 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return f"{self.name} - ₹{self.price}"
-# ----------- RESTAURANT INFO -------------- #
 class RestaurantInfo(models.Model):
     name = models.CharField(max_length=100,default="RR Restaurant")
     description = models.TextField()
@@ -124,14 +117,14 @@ class RestaurantInfo(models.Model):
     def __str__(self):
         return self.name
 
-# ---------- CONTACT ----------- #
+
+    
 class Contact(models.Model):
         name = models.CharField(max_length=100)
         email = models.EmailField()
         created_at = models.DateTimeField(auto_now_add=True)
         def __str__(self):
         return self.name
-# ---------- RESTAURANT LOCATION ------ #
 class RestaurantLocation(models.Model):
     name = models.CharField(max_length=200, default= "RR Restaurant")
     address = models.CharField(max_length=255)
@@ -162,7 +155,6 @@ class chef(models.Model):
 
     def __str__(self):
         return self.name
-# -------------- NEWS LETTER SUBSCRIBER -------- #
 class NewsletterSubscriber(models.Model):
     email = models.EmailField(unique=True)
     subscribed_at = models.DateTimeField(auto_now_add=True)
