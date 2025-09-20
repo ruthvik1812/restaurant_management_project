@@ -19,13 +19,14 @@ from django.urls import path,include
 
 urlpatterns = [
     path('', admin.site.urls),
-    path('api/',include('home.urls')),
-    path('api/','accounts/',include('account.urls')),
-    path('api/products/',include('products.urls')),
-    path('api/orders/',include('orders.urls')),
+    path("api/",include('home.urls')),
+    path("api/","accounts/",include('account.urls')),
+    path("api/products/",include('products.urls')),
+    path("api/orders/", include('orders.urls')),
+    path("api/orders/", include("orders.urls")),
     
     # Menu API Endpoint
-    path('api/menu/', get_menu, name='menu'),
+    path("api/menu/", get_menu, name='menu'),
 ]
 
 if settings.DEBUG:
