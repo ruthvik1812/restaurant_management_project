@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenicate, login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
+from django.core.paginator import paginator
+import random
 from .models import Feedback, Staff, MenuItem,TodaySpecial, RestaurantLocation
 from django.contrib.auth.hashers import check_password
 from rest_framework.decorators import api_view
@@ -12,7 +14,7 @@ from rest_framework import status
 from .forms import ContactForm, FeedbackForm
 from .models import RestaurantInfo
 from .models import chef
-from .models import NewsletterForm
+from .models import NewsletterForms
 from .models import NewsletterSubscriber
 # Create your views here.
 
@@ -34,7 +36,7 @@ def home(request):
     total_items = sum(cart.values())
 
     # Handle login form submission
-    if request.method == "POST" and "login" in request.POST:(
+    if request.method == "POST" and "login" in request.POST:
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenicate(request, username=username, password=password)
@@ -50,7 +52,7 @@ def home(request):
     # Handle search functionality
     query = request.GET.get("q", "")
     if query:
-        menu_items = MenuItem.objects.filter(name__icontains=query)
+        menu_items = MenuItem.objects.filter(name_icontains=query)
     else:
         menu_items = MenuItem.objects.all()
     
@@ -67,7 +69,7 @@ def home(request):
     # Check for order confirmation
     order_number = None
     if request.GET.get("confirmed") == "true":
-        order_number = random.randit(1000, 9999)
+        order_number = random.randint(1000, 9999)
    opening_hours = {
     "Monday":"10:00 AM - 10:00 PM",
     "Tuesday": "10:00 AM - 10:00 PM",
@@ -110,7 +112,13 @@ def home(request):
         "opening_hours": opening_hours,
         "form": form,
     })
-# ========== 
+
+# ========== API ViewSet for Menu Items ====== #
+class MenuItemViewSet(viewsets.ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
 # ====== Order Page (Redirects to Home with confirmation)===== #
 def order_page(request):
     return redirect("/?confirmed=true")
@@ -137,7 +145,7 @@ def about(request):
         request.session.modified = True
         return redirect("home")
     # --------------- REMOVE FROM CART ------------ #
-    def remove_from_cart(reequest, item_id):
+    def remove_from_cart(request, item_id):
         cart = request.session.get("cart",{})
 
         if str(item_id) in cart:
