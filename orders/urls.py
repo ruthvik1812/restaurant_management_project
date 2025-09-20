@@ -3,4 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('menu/',,views.menu_list,name='menu_list'),
+    path("history/", OrderHistoryView.as_view(), name="order-history"),
 ]
