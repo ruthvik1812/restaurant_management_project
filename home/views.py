@@ -14,9 +14,6 @@ from .models import RestaurantInfo
 from .models import chef
 from .models import NewsletterForm
 from .models import NewsletterSubscriber
-from rest_framework.generics import ListAPIView
-from .models import MenuCategory
-from .serializers import MenuCategorySerializer
 # Create your views here.
 
 #==========Home page View==========#
@@ -278,7 +275,3 @@ def get_menu(request):
 def chef(request):
     chefs = chef.objects.all()
     return render(request, 'chef.html',{'chefs': chefs})
-
-class MenuCategoryListView(ListAPIView):
-    queryset = MenuCategory.objects.all()
-    serializer_class = MenuCategorySerializer
