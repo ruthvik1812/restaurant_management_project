@@ -26,7 +26,7 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path('chefs/', views.chefs, name='chefs'),
     path("api/", include(router.urls)),
-    path("api/")
+    path("api/menu-items/", views.menu_items_by_category, name="menu-items-by-category"),
     ]
 
 if settings.DEBUG:
