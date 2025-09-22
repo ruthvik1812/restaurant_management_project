@@ -8,7 +8,7 @@ class MenuCategorySerializer(serializers.ModelSerializer):
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = ["id", "name", "description", "price", "available"]
+        fields = ["id", "name", "description", "price","category", "available"]
 
     def validate_price(self, value):
         if value <=0:
