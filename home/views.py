@@ -16,6 +16,11 @@ from .models import RestaurantInfo
 from .models import chef
 from .models import NewsletterForms
 from .models import NewsletterSubscriber
+from .rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import MenuItem
+from .serializers import MenuItemSerializer
 # Create your views here.
 
 #==========Home page View==========#
@@ -270,6 +275,14 @@ def get_menu(request):
             "image":item.image.url if item.image else None
         })
     return Response({"menu": menu})
+def menu_items_by_category(request):
+    category_name = request.GET.get("category")
+    if category_name:
+        items = MenuItem.objects.filter(category__category_name__iexact=category_name)
+    else:
+        items = MenuItem..objects.all()
+    serializer = MenuItemSerializer(items, many=True)
+    return Response(serializer.data, status=status..HTTP_200_OK)
  # Dedicated Menu Page View
 
  def menu_page(request):
