@@ -27,6 +27,7 @@ urlpatterns = [
     path('chefs/', views.chefs, name='chefs'),
     path("api/", include(router.urls)),
     path("api/menu-items/", views.menu_items_by_category, name="menu-items-by-category"),
+    path("menu/search/", MenuItemSearchView.as_view(), name="menuitem-search"),
     ]
 
 if settings.DEBUG:
