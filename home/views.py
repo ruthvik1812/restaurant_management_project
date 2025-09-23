@@ -18,7 +18,7 @@ from .models import NewsletterForms
 from .models import NewsletterSubscriber
 from .rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics , permissions, viewsets
 from .models import MenuItem
 from .serializers import MenuItemSerializer
 # Create your views here.
@@ -117,7 +117,6 @@ def home(request):
         "opening_hours": opening_hours,
         "form": form,
     })
-
 # ========== API ViewSet for Menu Items ====== #
 class MenuItemViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
@@ -283,7 +282,17 @@ def menu_items_by_category(request):
         items = MenuItem..objects.all()
     serializer = MenuItemSerializer(items, many=True)
     return Response(serializer.data, status=status..HTTP_200_OK)
- # Dedicated Menu Page View
+# =========== Menu Search API =============
+class MenuItemSearchView(generics.ListAPIView):
+    serializer_class = MenuItemSerializer
+
+    def get_queryset(self):
+        query = self.request.query_params.get("q","")
+        if query:
+            return MenuItem.objects.filter(name__icontains=query)
+        return MenuItem.objects.all()
+
+ # =============== Dedicated Menu Page View ===========
 
  def menu_page(request):
     menu_items = MenuItem.objects.all()
