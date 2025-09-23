@@ -11,16 +11,22 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+envi = environ.Env(
+    DEBUG=(bool,False)
+)
+environ.Env.read_env(BASE_DIR/ ".env")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s^x_u!itekxd=@a3o3zv4d%hw$j6d#2v358wgltxl8rc(-^t&p'
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env("DEBUG")
+ALLOWED_HOSTS = ["*"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -119,9 +125,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "Asia/kolkata"
 
 USE_I18N = True
 
@@ -137,6 +143,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 RESTAURANT_NAME ="RR RESTAURANT"
 RESTAURANT_PHONE ="8639139326"
+
+# ======= Django REST Framework =============
+REST_FRAMEWORK ={
+    "DEFAULT_PAGINATION": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE":10,
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
