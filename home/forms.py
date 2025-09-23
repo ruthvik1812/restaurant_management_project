@@ -1,5 +1,7 @@
 from django import forms
 from .models import Contact
+from .models import NewsletterSubscriber
+from home.utils.validation_utils import is_valid_email
 
 class ContactForm(forms.ModelForm):
     class Meta:
