@@ -4,6 +4,8 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from .models import Order
 from .serializers import OrderSerializer
+from rest_framework.views import APIView
+from .serializers import UserProfileSerializer
 
 # Create your views here
 # ------ Home view ----- #
@@ -65,3 +67,17 @@ class OrderDetailView(RetrieveAPIView):
 
     def get_queryset(self):
         return Order.objects.filter(customer=self.request.user)
+
+# -----------UserProfileUpdateView ----- #
+
+class UserProfileUpdateView(APIView):
+    
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request):
+        user = request.user
+        serializer = UserProfileSerializer(user, data=request, partial=True)
+        if serializer.is_Valid():
+            serializer.save()
+            return Response({'success': True, 'data': serializer.data}, status=status.HTTP_200_OK)
+        return Response({'success': False, 'errors': serializer.errors}, status=status_400_BAD_REQUEST)
