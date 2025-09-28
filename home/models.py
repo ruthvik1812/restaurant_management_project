@@ -48,7 +48,27 @@ class Restaurant(models.Model):
         auto_now_add=True,
         verbose_name="Registered On"
     )
-   
+
+    OPERATING_DAYS_CHOICES = [
+        ('Mon', 'Monday'),
+        ('Tue', 'Tuesday'),
+        ('Wed', 'Wednesday'),
+        ('Thu' , 'Thursday'),
+        ('Fri', 'Friday'),
+        ('Sat', 'Saturday'),
+        ('Sun', 'Sunday'),
+    ]
+    operating_hours = models.Charfield(
+        max_length=50,
+        help_text="Comma-separated list of operating days, e.g., 'Mon,Tue,Wed,Thu,Fri,Sat,Sun'",
+        blank=True
+    )
+   def get_operating_days_list(self):
+    """Return operating days as a list of strings """
+    if self.operating_days:
+        return self.operating_days.split(',')
+        return []
+        
 class Meta:
         verbose_name = "Restaurant"
         verbose_name_plural = "Restaurants"
