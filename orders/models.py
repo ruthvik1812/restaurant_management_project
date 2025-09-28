@@ -4,6 +4,13 @@ from products.models import product
 from account.models import User
 from home.models import product
 
+class ActiveOrderManager(models.manager):
+    def get_active_orders(self):
+        """
+        Returns only orders with 'PENDING' or 'PROCESSING'.
+        """
+        return self.filter(status__in=['PENDING', 'PROCESSING'])
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ("PENDING","Pending"),
@@ -18,7 +25,10 @@ class Order(models.Model):
     order_items = models.ManyToManyField(product, through='OrderItem')
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    
+    objects = models.manager()
+    active_orders = ActiveOrderManager()
+    
     def __str__(self):
         return f"Order{self.id} by {self.customer.username}"
 
