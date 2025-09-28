@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Order, OrderItem
 from home.models import Product
 from account.models import User
+from .serializers import UserProfileSerializer
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,3 +24,22 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ["order_id", "customer", "items", "total_price", "created_at"]
+
+class UserProfileUpdateView(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['firstname', 'last_name', 'email', 'username']
+        extra_kwargs = {
+            'email':{'required': True},
+            'username': {'required':True},
+
+        }
+
+    def update(self, instance, validated_data):
+        instance.firstname = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.email - validated_data.get('username', instance.username)
+        instance.username = validated_data.get('username', instance.username)
+        instance.save()
+        return instance
+   
