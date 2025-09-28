@@ -1,0 +1,351 @@
+/* ============== GLOBAL STYLES ============= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    background-color: #f7f8fc;
+    color: #222;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========= HEADER ============= */
+header {
+    background: linear-gradient(135deg, #ff6347, #ff3e7f);
+    padding: 25px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    max-width: 120px;
+    display: block;
+    margin: 0 auto 10px;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.4));
+}
+header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 5px;
+}
+.phone {
+    display: inline-block;
+    margin-top: 8px;
+    background: white;
+    color: #ff3e7f;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, color 0.3s;
+}
+.phone:hover {
+    background: #ff3e7f;
+    color: white;
+}
+
+/* ================= BREADCRUMBS ============ */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+    margin: 0 auto 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 15px;
+    font-weight: 500;
+}
+.breadcrumbs a {
+    color: #ff3e7f;
+    transition: color 0.2s ease-in-out;
+}
+.breadcrumbs a:hover {
+    color: #e63946;
+}
+.breadcrumbs span {
+    margin: 0 8px;
+    color: #777;
+}
+
+/* =============== HERO SECTION ============== */
+.hero {
+    position: relative;
+    background: url("{% static 'images/restaurant-hero.jpg' %}") center/cover no-repeat;
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    border-radius: 12px;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+.hero h2,
+.hero p,
+.hero .btn {
+    position: relative;
+    z-index: 1;
+}
+.hero h2 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    animation: fadeUp 1.2s ease-in-out;
+}
+.hero .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #ff6347, #ff3e7f);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero .btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== ORDER NOW SECTION =========== */
+.order-section {
+    padding: 50px 20px;
+    text-align: center;
+    background: #fff8f8;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    max-width: 900px;
+}
+.order-section h2 {
+    font-size: 28px;
+    color: #ff3e7f;
+    margin-bottom: 10px;
+}
+.order-section p {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 25px;
+}
+.order-btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background: #ff3e7f;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+.order-btn:hover {
+    background: #e6005c;
+    transform: scale(1.05);
+}
+
+/* ================= ABOUT US PAGE ================ */
+.about-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.about-container h2 {
+    color: #ff3e7f;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.about-container p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+.about-image {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== CONTACT PAGE STYLING ========== */
+.contact-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    margin: 50px auto;
+}
+.contact-container h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.contact-form label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+.contact-form input,
+.contact-form textarea {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+.contact-form button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+/* ========== OPENING HOURS SECTION ========== */
+.opening-hours {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #fff8f8;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.opening-hours h2 {
+    color: #ff3e7f;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.opening-hours ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.opening-hours li {
+    font-size: 16px;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.opening-hours li:last-child {
+    border-bottom: none;
+}
+
+.opening-hours li strong {
+    color: #e6005c;
+}
+
+/* =============== FOOTER ==================== */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 3px solid #007bff;
+}
+footer a {
+    color: #ff6347;
+    transition: color 0.3s ease;
+}
+footer a:hover {
+    color: #fff;
+}
+.footer-links {
+    margin-top: 8px;
+}
+.footer-links a {
+    color: #00aaff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+.footer-links a:hover {
+    color: #007bff;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============= RESPONSIVE DESIGN =============== */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .menu-items {
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu-card {
+        width: 90%;
+        max-width: 350px;
+    }
+    .about-container {
+        padding: 20px;
+    }
+    .contact-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
