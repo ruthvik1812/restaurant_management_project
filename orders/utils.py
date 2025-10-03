@@ -3,6 +3,9 @@ import string
 import logging
 import django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+
 from orders.models import Coupon, Order   # make sure you have a Coupon model defined
 
 logger = logging.getLogger(__name__)
@@ -63,3 +66,36 @@ def send_order_confirmation_email(order, include_coupon=False, coupon_length=10,
         message += "\nWe appreciate your business and hope you enjoy your order!\n\nBest regards,\nYour Company Name"
 
         recipient_list = [order.customer.email
+def send_email(to_email, subject, message, from_email=None):
+    """
+    Reusable function to send emails.
+    Args:
+        to_email (str or list): Recipient emails(s).
+        subject (str): Subject line.
+        message (str): Body of the email.
+        from_email (str, optional): Default to settings.DEFAULT_FROM_EMAIL.
+
+    Returns:
+        bool: True if email sent sucessfully, False otherwise.
+        """
+    try:
+        if isinstance(to_email,str):
+            validate_email(to_email)
+        else:
+            for email in to_email:
+                validate_email(email)
+            if not from_email:
+                from_email = settings.DEFAULT_FROM_EMAIL
+            
+            send_mail(subject, message, from_email, [to_email] if isinstance() else to_email)
+            return True
+
+    except BadHeaderError:
+        print("Invalid header found.")
+        return False
+    except ValidationError:
+        print("Invalid email address.")
+        return False
+    except Exception as e:
+        print(f"Error sending email:{e}")
+        return False
