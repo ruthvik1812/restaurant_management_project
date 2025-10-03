@@ -23,12 +23,17 @@ class Order(models.Model):
     order_id = models.CharField(max_length=50,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     order_items = models.ManyToManyField(product, through='OrderItem')
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     
     objects = models.manager()
     active_orders = ActiveOrderManager()
     
+    def save(self, *args, **kwargs):
+        if not self.order_id:
+            self.order_id = generate_unique_order_id()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"Order{self.id} by {self.customer.username}"
 
