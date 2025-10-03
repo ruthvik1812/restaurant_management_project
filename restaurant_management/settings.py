@@ -74,7 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'your_app.context_processors.current_year',
+                'home.context_processors.current_year',
             ],
         },
     },
@@ -146,7 +146,7 @@ RESTAURANT_PHONE ="8639139326"
 
 # ======= Django REST Framework =============
 REST_FRAMEWORK ={
-    "DEFAULT_PAGINATION": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE":10,
 }
 
