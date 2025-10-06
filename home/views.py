@@ -21,6 +21,7 @@ from rest_framework.response import Response
 from rest_framework import status, generics , permissions, viewsets
 from .models import MenuItem
 from .serializers import MenuItemSerializer
+from .serializers import ContactFormSubmissionSeriliazer
 # Create your views here.
 
 #==========Home page View==========#
@@ -197,7 +198,20 @@ def about(request):
         else:
             form = ContactForm()
         return render(request, "contact.html", {"form": form})
-   
+   class ContactFormSubmissonview(generics.CreateAPIView):
+        queryset = ContactFormSubmission.objects.all()
+        serializer_class = ContactFormSubmissionSeriliazer
+
+        def post(self, request, *args, **kwargs):
+            serializer = self.get_serializer(data=request.data)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    {"message":"Your message has been submitted successfully!"},
+                    status=status.HTTP_201_CREATED
+                )
+                return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
     # fetch restaurant Location dynamically
     location = RestaurantLocation.objects.first()
     
