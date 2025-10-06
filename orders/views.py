@@ -6,6 +6,9 @@ from .models import Order
 from .serializers import OrderSerializer
 from rest_framework.views import APIView
 from .serializers import UserProfileSerializer
+from django.http import JsonResponse
+from .utils import send_email
+from rest_framework.response import Response
 
 # Create your views here
 # ------ Home view ----- #
@@ -67,7 +70,46 @@ class OrderDetailView(RetrieveAPIView):
 
     def get_queryset(self):
         return Order.objects.filter(customer=self.request.user)
+    
+    def order_confirmation(request):
+        user_email = "customer@example.com"
+        subject = "Order Confirmation"
+        message = "Thank you for the your order! "
+        
+        if send_email(user_email, subject, message):
+            return JsonResponse({"status": "success", "message": "Email sent successfully"})
+        else:
+            return JsonResponse({"status": "error", "message": "Failed to send email"})
+# -------------- Order view -------------- #
+class OrderViewSet(viewsets.viewSet):
+    permission_classes = [IsAuthenticated]
 
+    def destroy(self, request, pk=None):
+        """
+        Cancel an order by updating its status to 'Cancelled'.
+        only the user who placed the order can cancel it.
+        """
+        order = get_object_or_404(Order, pk=pk)
+
+        if order.user != request.user:
+            return Response(
+                {"error":"You are not authorized to cancel this order."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        if order.status in ['Completed', 'Cancelled']:
+            return Response(
+                {"error":f"Order cannot be cancelled as it is already {order.status.lower()."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        order.status = 'Cancelled'
+        order.save()
+
+        serializer = OrderSerializer(order)
+        return Response(
+            {"message":"Order cancelled successfully.", "order": serializer.data},
+            status=status.HTTP_200_OK
+        )
 # -----------UserProfileUpdateView ----- #
 
 class UserProfileUpdateView(APIView):
