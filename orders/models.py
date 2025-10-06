@@ -39,6 +39,9 @@ class Order(models.Model):
         return f"Order{self.id} by {self.customer.username}"
 
     def calculate_total(self):
+        """
+        Calculate total cost of all items in this order.
+        """
         total =sum(item.product.price * item.quantity for item in self.items.all())
         self.total_amount = total
         self.save()
