@@ -28,6 +28,7 @@ urlpatterns = [
     # Menu API Endpoint
     path("api/menu/", get_menu, name='menu'),
     path("api/contact/", ContactFormSubmissionView.as_view(), name='contact-form'),
+    path('api/orders/<int:pk>/cancel/', order_cancel, name='order-cancel'),
 ]
 
 if settings.DEBUG:
