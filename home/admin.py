@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Restaurant, MenuItem, Contact, RestaurantLocation, Feedback
+from .models import ContactFormSubimission
 # Register your models here.
 
 @admin.register(Restaurant)
@@ -25,6 +26,12 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ('name','email','created_at')
     search_fields = ('name', 'email')
     ordering = ('-created_at',)
+# ---------- ContactForm ---------- #
+@admin.register(ContactFormSubimission)
+class ContactFormSubimissionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'submitted_at')
+    search_fields = ('name', 'email')
+    
 # ------------- RESTAURANT LOCATION ADMIN --------------#
 @admin.register(RestaurantLocation)
 class RestaurantLocation(admin.ModelAdmin):
