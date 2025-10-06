@@ -27,6 +27,7 @@ urlpatterns = [
     
     # Menu API Endpoint
     path("api/menu/", get_menu, name='menu'),
+    path("api/contact/", ContactFormSubmissionView.as_view(), name='contact-form'),
 ]
 
 if settings.DEBUG:
