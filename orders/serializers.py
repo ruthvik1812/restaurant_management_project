@@ -23,7 +23,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ["order_id", "customer", "items", "total_price", "created_at"]
+        fields = ["order_id", "customer", "items", "total_amount","status", "created_at"]
 
 class UserProfileUpdateView(serializers.ModelSerializer):
     class Meta:
