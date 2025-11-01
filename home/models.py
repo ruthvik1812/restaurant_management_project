@@ -209,3 +209,4 @@ class NutritionalInformation(models.Model):
     kjjjkkjgjhhggggghgh
     kjjjjjgkjghasdfghjk
     wsdfghjklfhsfgjsghkmghdfcghbjnkmjliohjgv bmnmbnmbghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhv
+    cfbvvvvvvvvvvvvvvvcgggggggg
