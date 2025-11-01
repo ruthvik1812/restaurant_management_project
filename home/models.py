@@ -10,7 +10,7 @@ class Restaurant(models.Model):
     owner_name = models.CharField(
         max_length=255,
         verbose_name="Owner Name"
-        default ="Ruthvik Raj chintala..000"
+        default ="Ruthvik Raj chintala"
     )
     
     email = models.EmailField(
@@ -205,4 +205,4 @@ class NutritionalInformation(models.Model):
     def __str__(self):
         return f"{self.menu_item.name} - {self.calories} kcal"
 
-    
+    kgj
