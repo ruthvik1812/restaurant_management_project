@@ -19,4 +19,3 @@ def is_valid_email(email: str) -> bool:
         # Log the error for debugging
         logger.warning(f"Invalid email '{email}': {e}")
         return False
-kbjjmkkkkkkkkkkkkkkkkkkkkkkkm       
