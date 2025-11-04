@@ -205,4 +205,4 @@ class NutritionalInformation(models.Model):
     def __str__(self):
         return f"{self.menu_item.name} - {self.calories} kcal"
 
-    hgfbfgb
+    hgfbfgbfbvcx 
